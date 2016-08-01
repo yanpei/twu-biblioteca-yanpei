@@ -8,12 +8,9 @@ import com.twu.biblioteca.Router.RouterState;
 import java.io.*;
 import java.util.Scanner;
 
-/**
- * Created by pyan on 7/31/16.
- */
 public class BibliotecaShell {
-    PrintStream m_outputStream;
-    InputStream m_inputStream;
+    private PrintStream m_outputStream;
+    private InputStream m_inputStream;
 
     public BibliotecaShell(PrintStream outputStream, InputStream inputStream)
     {
@@ -36,6 +33,8 @@ public class BibliotecaShell {
             if (message.getExit()) { break; }
             if(message.isWaitingInput()) {
                 userInput = inputScanner.next();
+            } else {
+                userInput = null;
             }
         }
     }

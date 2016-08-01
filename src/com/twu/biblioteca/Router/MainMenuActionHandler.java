@@ -18,7 +18,9 @@ class MainMenuActionHandler implements IActionHandler {
     {
         if(userInput == null){
             return new RouterMessage(false, true, MainMenuText.getMainMenuText());
-        }else if(userInput.equals("1")){
+        }
+
+        if(userInput.equals("1")){
             ArrayList<Book> listBooks = bibliotecaService.listBooks();
             String result = "";
             for (Book book : listBooks) {
@@ -26,18 +28,23 @@ class MainMenuActionHandler implements IActionHandler {
             }
             return new RouterMessage(
                     false,
-                    true, "----------Book List--------\n"+result+"\n---------------------------\n" + MainMenuText.getMainMenuText());
-        }else if(userInput.equals("2")){
-            routerContext.setNextState(RouterState.Checkout);
-            return new RouterMessage(false, true, null);
-        }else if(userInput.equals("3")){
-            routerContext.setNextState(RouterState.ReturnBook);
-            return new RouterMessage(false, true, null);
-        }else if(userInput.equals("q")){
-            return new RouterMessage(true, false, null);
-        }else {
-            return new RouterMessage(false, true, "Select a valid option!\n" + MainMenuText.getMainMenuText());
+                    true, "----------Book List--------\n"+result+"\n---------------------------\n");
         }
 
+        if(userInput.equals("2")){
+            routerContext.setNextState(RouterState.Checkout);
+            return new RouterMessage(false, true, null);
+        }
+
+        if(userInput.equals("3")){
+            routerContext.setNextState(RouterState.ReturnBook);
+            return new RouterMessage(false, true, null);
+        }
+
+        if(userInput.equals("q")){
+            return new RouterMessage(true, false, null);
+        }
+
+        return new RouterMessage(false, true, "Select a valid option!\n");
     }
 }

@@ -37,14 +37,22 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
 
-
         String expectedResult = "----------Book List--------\n"
                               + "BookName: book 1"
                               + "\t\tAuthor: author 1"
                               + "\t\tPublished Year: 2016\n"
-                              + "---------------------------\n" + MainMenuText.getMainMenuText();
+                              + "---------------------------\n";
+
         assertEquals(expectedResult, routerMessage.getText());
         assertEquals(false, routerMessage.getExit());
+    }
+
+    @Test
+    public void should_display_main_menu_when_current_state_is_MainMenu_and_user_input_is_valid_option_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        bibliotecaRouter.getRouterMessage("1");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+        assertEquals(MainMenuText.getMainMenuText(), routerMessage.getText());
     }
 
     @Test
@@ -52,10 +60,17 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("9");
 
-        String expectedResult = "Select a valid option!\n" + MainMenuText.getMainMenuText();
+        String expectedResult = "Select a valid option!\n";
         assertEquals(expectedResult, routerMessage.getText());
         assertEquals(false, routerMessage.getExit());
+    }
 
+    @Test
+    public void should_display_main_menu_when_user_input_is_not_valid_option_and_current_state_is_MainMenu_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        bibliotecaRouter.getRouterMessage("9");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+        assertEquals(MainMenuText.getMainMenuText(), routerMessage.getText());
     }
 
     @Test
