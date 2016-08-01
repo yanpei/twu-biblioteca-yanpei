@@ -27,7 +27,9 @@ public class CheckoutActionHandler implements IActionHandler {
                     false,
                     "Thank you! Enjoy the book\n\n" + MainMenuText.mainMenuText);
         }
-        throw new NotImplementedException();
+        return new RouterMessage(
+                false,
+                "That book is not available.\n\n" + MainMenuText.mainMenuText);
     }
 
 }
