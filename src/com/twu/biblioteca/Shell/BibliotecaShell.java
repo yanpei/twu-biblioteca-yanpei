@@ -1,5 +1,10 @@
 package com.twu.biblioteca.Shell;
 
+import com.twu.biblioteca.Core.BibliotecaService;
+import com.twu.biblioteca.Router.BibliotecaRouter;
+import com.twu.biblioteca.Router.RouterMessage;
+import com.twu.biblioteca.Router.RouterState;
+
 import java.io.*;
 
 /**
@@ -17,6 +22,10 @@ public class BibliotecaShell {
 
     public void Execute()
     {
+        BibliotecaRouter router = new BibliotecaRouter(RouterState.Initialization, new BibliotecaService());
+        String userInput = null;
+        RouterMessage routerMessage = router.getRouterMessage(userInput);
+        m_outputStream.println(routerMessage.text);
 
     }
 
