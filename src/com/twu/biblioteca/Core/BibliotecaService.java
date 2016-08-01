@@ -14,12 +14,20 @@ public class BibliotecaService {
     }
 
     public ArrayList<Book> listBooks() {
-        return allBooks;
+        ArrayList<Book> bookList = new ArrayList<Book>();
+        for (Book book :
+                allBooks) {
+            if(!book.isCheckedOut){
+                bookList.add(book);
+            }
+        }
+        return bookList;
     }
 
     public boolean checkoutBook(String bookName) {
         Book book = getBookByName(bookName);
         if (book != null && !book.isCheckedOut) {
+            book.isCheckedOut = true;
             return true;
         }
         return false;

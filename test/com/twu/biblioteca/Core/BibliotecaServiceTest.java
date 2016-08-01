@@ -3,6 +3,7 @@ package com.twu.biblioteca.Core;
 import com.twu.biblioteca.Model.Book;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -44,7 +45,7 @@ public class BibliotecaServiceTest {
         bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
         bibliotecaService.allBooks.add(new Book("book 2","author 2",2016,false));
 
-        assertEquals(true,bibliotecaService.checkoutBook("book 1"));
+        assertEquals(true, bibliotecaService.checkoutBook("book 1"));
     }
 
     @Test
@@ -64,6 +65,29 @@ public class BibliotecaServiceTest {
 
         assertEquals(false,bibliotecaService.checkoutBook("book 3"));
     }
+
+    @Test
+    public void should_display_books_that_are_not_checked_out_when_calling_listBooks(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
+        bibliotecaService.allBooks.add(new Book("book 2","author 2",2016,false));
+
+        bibliotecaService.checkoutBook("book 1");
+
+        ArrayList<Book> books = bibliotecaService.listBooks();
+        boolean isListed = true;
+        for (Book book :
+                books) {
+            if(book.bookName == "book 1"){
+                isListed = true;
+            }
+            isListed = false;
+        }
+        assertEquals(true, bibliotecaService.getBookByName("book 1").isCheckedOut);
+        assertEquals(false,isListed);
+    }
+
+
 
 
 

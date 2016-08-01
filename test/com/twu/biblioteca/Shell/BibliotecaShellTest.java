@@ -65,7 +65,7 @@ public class BibliotecaShellTest {
     }
 
     @Test
-    public void  Should_quit_when_user_input_is_Quit_and_current_state_is_MainMenu(){
+    public void should_quit_when_user_input_is_Quit_and_current_state_is_MainMenu(){
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("q");
 
