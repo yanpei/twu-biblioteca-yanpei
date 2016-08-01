@@ -74,11 +74,22 @@ public class BibliotecaShellTest {
     }
 
     @Test
-    public void  should_waiting_for_user_input_when_user_select_Checkout_books_and_current_status_is_MainMenu(){
+    public void should_waiting_for_user_input_when_user_select_Checkout_books_and_current_status_is_MainMenu(){
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("2");
 
         assertEquals(null,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+    }
+
+    @Test
+    public void should_display_MainMenu_when_user_input_check_out_book_name_and_continue_execution_given_current_state_is_CheckoutBook(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
+
+        assertEquals(MainMenuText.mainMenuText,routerMessage.text);
         assertEquals(false,routerMessage.exit);
     }
 

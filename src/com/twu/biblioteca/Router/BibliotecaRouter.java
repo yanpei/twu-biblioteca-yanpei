@@ -31,6 +31,8 @@ public class BibliotecaRouter {
                 return new WelcomeActionHandler(m_context,m_service);
             case MainMenu:
                 return new MainMenuActionHandler(m_context,m_service);
+            case Checkout:
+                return new CheckoutActionHandler(m_context,m_service);
             default:
                 return new MainMenuActionHandler(m_context,m_service);
         }
