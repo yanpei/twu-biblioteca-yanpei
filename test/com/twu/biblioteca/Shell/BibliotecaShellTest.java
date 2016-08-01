@@ -81,9 +81,12 @@ public class BibliotecaShellTest {
     public void should_display_not_checked_out_books_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
         BibliotecaService bibliotecaService = new BibliotecaService();
         bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,true));
-        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
-        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
+        bibliotecaService.getAllBooks().add(new Book("book 2","author 2",2016,false));
+
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
+        bibliotecaRouter.getRouterMessage("book 2");
+        BibliotecaRouter bibliotecaRouter2 = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter2.getRouterMessage("1");
 
         String expectedResult = "BookName: book 1"
                 + "\t\tAuthor: author 1"
@@ -123,6 +126,24 @@ public class BibliotecaShellTest {
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("3");
 
         assertEquals(null,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+    }
+
+    @Test
+    public void should_display_returned_books_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,true));
+
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.ReturnBook, bibliotecaService);
+        bibliotecaRouter.getRouterMessage("book 1");
+        BibliotecaRouter bibliotecaRouter2 = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter2.getRouterMessage("1");
+
+        String expectedResult = "BookName: book 1"
+                + "\t\tAuthor: author 1"
+                + "\t\tPublished Year: 2016\n"
+                + "---------------------------\n";
+        assertEquals(expectedResult,routerMessage.text);
         assertEquals(false,routerMessage.exit);
     }
 
