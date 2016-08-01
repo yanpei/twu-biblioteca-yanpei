@@ -87,4 +87,14 @@ public class BibliotecaServiceTest {
         assertEquals(true, bibliotecaService.getBookByName("book 1").getIsCheckedOut());
         assertEquals(false, isListed);
     }
+
+    @Test
+    public void should_return_true_when_call_returnBook_given_book_name_exist_and_been_checkedout(){
+        ArrayList<Book> allBooks = new ArrayList<Book>();
+        allBooks.add(new Book("book 1", "author 1", 2016, true));
+        allBooks.add(new Book("book 2", "author 2", 2016, false));
+        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+
+        assertEquals(true,bibliotecaService.returnBook("book 1"));
+    }
 }

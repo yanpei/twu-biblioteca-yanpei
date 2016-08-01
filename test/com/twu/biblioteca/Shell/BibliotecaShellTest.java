@@ -112,11 +112,6 @@ public class BibliotecaShellTest {
 
         assertEquals("That book is not available.\n\n" + MainMenuText.mainMenuText,routerMessage.text);
         assertEquals(false,routerMessage.exit);
-
     }
-
-
-
-
 
 }

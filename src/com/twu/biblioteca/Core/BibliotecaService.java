@@ -50,4 +50,12 @@ public class BibliotecaService {
         }
         return null;
     }
+
+    public boolean returnBook(String bookName) {
+        Book book = getBookByName(bookName);
+        if(book != null && book.getIsCheckedOut()){
+            return true;
+        }
+        return false;
+    }
 }
