@@ -6,6 +6,7 @@ import com.twu.biblioteca.Router.RouterMessage;
 import com.twu.biblioteca.Router.RouterState;
 
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by pyan on 7/31/16.
@@ -26,7 +27,16 @@ public class BibliotecaShell {
         String userInput = null;
         RouterMessage routerMessage = router.getRouterMessage(userInput);
         m_outputStream.println(routerMessage.text);
+        router = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        Scanner inputScanner= new Scanner(m_inputStream);
 
+        while (true)
+        {
+            RouterMessage message = router.getRouterMessage(userInput);
+            m_outputStream.println(message.text);
+//            if (message.exit) { break; }
+//
+//            userInput = inputScanner.next();
+        }
     }
-
 }

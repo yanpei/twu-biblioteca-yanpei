@@ -13,7 +13,7 @@ public class BibliotecaService {
         return welcomeMessage;
     }
 
-    public List<Book> listBooks() {
+    public ArrayList<Book> listBooks() {
         return allBooks;
     }
 }

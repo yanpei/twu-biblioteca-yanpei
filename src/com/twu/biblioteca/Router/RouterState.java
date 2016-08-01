@@ -5,5 +5,6 @@ package com.twu.biblioteca.Router;
  */
 public enum RouterState
 {
-    Initialization
+    Initialization,
+    MainMenu
 }
