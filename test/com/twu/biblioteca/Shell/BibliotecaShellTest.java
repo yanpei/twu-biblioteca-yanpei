@@ -138,4 +138,16 @@ public class BibliotecaShellTest {
         assertEquals(false,routerMessage.exit);
     }
 
+    @Test
+    public void should_display_unsuccessful_message_when_current_state_is_return_book_and_user_input_book_name_not_exists_or_not_checked_out(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
+
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.ReturnBook, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 2");
+
+        assertEquals("That is not a valid book to return.\n\n" + MainMenuText.mainMenuText,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+    }
+
 }

@@ -21,6 +21,8 @@ public class ReturnBookActionHandler implements IActionHandler {
                     false,
                     "Thank you for returning the book.\n\n" + MainMenuText.mainMenuText);
         }
-        return new RouterMessage(false, null);
+        return new RouterMessage(
+                false,
+                "That is not a valid book to return.\n\n" + MainMenuText.mainMenuText);
     }
 }
