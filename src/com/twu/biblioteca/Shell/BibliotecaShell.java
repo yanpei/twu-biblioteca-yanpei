@@ -25,18 +25,15 @@ public class BibliotecaShell {
     {
         BibliotecaRouter router = new BibliotecaRouter(RouterState.Initialization, new BibliotecaService());
         String userInput = null;
-        RouterMessage routerMessage = router.getRouterMessage(userInput);
-        m_outputStream.println(routerMessage.text);
-        router = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         Scanner inputScanner= new Scanner(m_inputStream);
 
         while (true)
         {
             RouterMessage message = router.getRouterMessage(userInput);
             m_outputStream.println(message.text);
-//            if (message.exit) { break; }
-//
-//            userInput = inputScanner.next();
+            if (message.exit) { break; }
+
+            userInput = inputScanner.next();
         }
     }
 }

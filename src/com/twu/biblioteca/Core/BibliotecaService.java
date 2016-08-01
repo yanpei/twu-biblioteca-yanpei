@@ -3,21 +3,31 @@ package com.twu.biblioteca.Core;
 import com.twu.biblioteca.Model.Book;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BibliotecaService {
-    String welcomeMessage = "Hello, welcome to the Biblioteca!";
+    private String welcomeMessage = "Hello, welcome to the Biblioteca!";
     public ArrayList<Book> allBooks = new ArrayList<Book>();
+
+    public BibliotecaService() {
+    }
+
+    public BibliotecaService(ArrayList<Book> allBooks) {
+        this.allBooks = allBooks;
+    }
 
     public String getWelcomeMessage() {
         return welcomeMessage;
+    }
+
+    public ArrayList<Book> getAllBooks() {
+        return allBooks;
     }
 
     public ArrayList<Book> listBooks() {
         ArrayList<Book> bookList = new ArrayList<Book>();
         for (Book book :
                 allBooks) {
-            if(!book.isCheckedOut){
+            if(!book.getIsCheckedOut()){
                 bookList.add(book);
             }
         }
@@ -26,17 +36,16 @@ public class BibliotecaService {
 
     public boolean checkoutBook(String bookName) {
         Book book = getBookByName(bookName);
-        if (book != null && !book.isCheckedOut) {
-            book.isCheckedOut = true;
+        if (book != null && !book.getIsCheckedOut()) {
+            book.setIsCheckedOut(true);
             return true;
         }
         return false;
     }
 
     public Book getBookByName(String bookName){
-        for (Book book :
-                allBooks) {
-            if (book.bookName == bookName)
+        for (Book book : allBooks) {
+            if (book.getBookName() == bookName)
                 return book;
         }
         return null;

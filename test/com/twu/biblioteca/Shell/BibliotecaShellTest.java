@@ -7,16 +7,8 @@ import com.twu.biblioteca.Router.BibliotecaRouter;
 import com.twu.biblioteca.Router.RouterMessage;
 import com.twu.biblioteca.Router.RouterState;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by pyan on 7/31/16.
- */
 public class BibliotecaShellTest {
 
     @Test
@@ -40,14 +32,14 @@ public class BibliotecaShellTest {
     @Test
     public void should_display_book_list_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
 
 
         String expectedResult = "BookName: book 1"
-                              + "        Author: author 1"
-                              + "        Published Year: 2016\n"
+                              + "\t\tAuthor: author 1"
+                              + "\t\tPublished Year: 2016\n"
                               + "---------------------------\n";
         assertEquals(expectedResult,routerMessage.text);
         assertEquals(false,routerMessage.exit);
@@ -85,12 +77,32 @@ public class BibliotecaShellTest {
     @Test
     public void should_display_MainMenu_when_user_input_check_out_book_name_and_continue_execution_given_current_state_is_CheckoutBook(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
 
         assertEquals(MainMenuText.mainMenuText,routerMessage.text);
         assertEquals(false,routerMessage.exit);
     }
+
+    @Test
+    public void should_display_not_checked_out_books_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,true));
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
+
+        String expectedResult = "BookName: book 1"
+                + "\t\tAuthor: author 1"
+                + "\t\tPublished Year: 2016\n"
+                + "---------------------------\n";
+        assertEquals(expectedResult,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+    }
+
+
+
+
 
 }

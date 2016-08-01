@@ -17,6 +17,7 @@ public class WelcomeActionHandler implements IActionHandler {
     @Override
     public RouterMessage Handle(String userInput) {
         String welcomeMessage = bibliotecaService.getWelcomeMessage();
+        routerContext.setNextState(RouterState.MainMenu);
         return new RouterMessage(false, welcomeMessage);
     }
 }

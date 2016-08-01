@@ -4,10 +4,10 @@ package com.twu.biblioteca.Model;
  * Created by pyan on 8/1/16.
  */
 public class Book {
-    public String bookName;
-    public String author;
-    public int yearPublished;
-    public boolean isCheckedOut;
+    private String bookName;
+    private String author;
+    private int yearPublished;
+    private boolean isCheckedOut;
 
     public Book(String bookName,String author,int yearPublished,boolean isCheckedOut){
         this.bookName = bookName;
@@ -18,6 +18,26 @@ public class Book {
 
     @Override
     public String toString() {
-        return "BookName: "+bookName+"        Author: "+author+"        Published Year: "+yearPublished;
+        return "BookName: "+ getBookName() +"\t\tAuthor: "+ getAuthor() +"\t\tPublished Year: "+ getYearPublished();
+    }
+
+    public boolean getIsCheckedOut() {
+        return isCheckedOut;
+    }
+
+    public void setIsCheckedOut(boolean isCheckedOut) {
+        this.isCheckedOut = isCheckedOut;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getYearPublished() {
+        return yearPublished;
     }
 }

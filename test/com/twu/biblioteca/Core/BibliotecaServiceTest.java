@@ -23,7 +23,7 @@ public class BibliotecaServiceTest {
         List<Book> allBooksResult = bibliotecaService.listBooks();
 
         assertEquals(1,allBooksResult.size());
-        assertEquals("book 1",allBooksResult.get(0).bookName);
+        assertEquals("book 1", allBooksResult.get(0).getBookName());
     }
 
     @Test
@@ -34,9 +34,9 @@ public class BibliotecaServiceTest {
         List<Book> allBooksResult = bibliotecaService.listBooks();
 
         assertEquals(1,allBooksResult.size());
-        assertEquals("book 1",allBooksResult.get(0).bookName);
-        assertEquals("author 1",allBooksResult.get(0).author);
-        assertEquals(2016,allBooksResult.get(0).yearPublished);
+        assertEquals("book 1", allBooksResult.get(0).getBookName());
+        assertEquals("author 1", allBooksResult.get(0).getAuthor());
+        assertEquals(2016, allBooksResult.get(0).getYearPublished());
     }
 
     @Test
@@ -67,28 +67,24 @@ public class BibliotecaServiceTest {
     }
 
     @Test
-    public void should_display_books_that_are_not_checked_out_when_calling_listBooks(){
-        BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
-        bibliotecaService.allBooks.add(new Book("book 2","author 2",2016,false));
+    public void should_display_books_that_are_not_checked_out_when_calling_listBooks() {
+        ArrayList<Book> allBooks = new ArrayList<Book>();
+        allBooks.add(new Book("book 1", "author 1", 2016, false));
+        allBooks.add(new Book("book 2", "author 2", 2016, false));
 
+        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
         bibliotecaService.checkoutBook("book 1");
 
         ArrayList<Book> books = bibliotecaService.listBooks();
         boolean isListed = true;
         for (Book book :
                 books) {
-            if(book.bookName == "book 1"){
+            if (book.getBookName() == "book 1") {
                 isListed = true;
             }
             isListed = false;
         }
-        assertEquals(true, bibliotecaService.getBookByName("book 1").isCheckedOut);
-        assertEquals(false,isListed);
+        assertEquals(true, bibliotecaService.getBookByName("book 1").getIsCheckedOut());
+        assertEquals(false, isListed);
     }
-
-
-
-
-
 }

@@ -1,15 +1,7 @@
 package com.twu.biblioteca.Router;
 
 import com.twu.biblioteca.Core.BibliotecaService;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.NotActiveException;
-
-import static com.twu.biblioteca.Router.RouterState.*;
-
-/**
- * Created by pyan on 8/1/16.
- */
 public class BibliotecaRouter {
 
     private BibliotecaService m_service;
@@ -20,13 +12,14 @@ public class BibliotecaRouter {
         m_context = new RouterContext(initialState);
     }
 
-    public RouterMessage getRouterMessage(String userInput) {
+    public RouterMessage getRouterMessage(String userInput)
+    {
         return getActionHandler().Handle(userInput);
     }
 
     private IActionHandler getActionHandler()
     {
-        switch (m_context.currentState) {
+        switch (m_context.getCurrentState()) {
             case Initialization:
                 return new WelcomeActionHandler(m_context,m_service);
             case MainMenu:
