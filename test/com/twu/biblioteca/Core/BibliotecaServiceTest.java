@@ -38,7 +38,15 @@ public class BibliotecaServiceTest {
         assertEquals(2016,allBooksResult.get(0).yearPublished);
     }
 
-    
+    @Test
+    public void should_return_true_when_call_checkoutBook_if_the_book_has_not_been_checked_out_and_the_book_exists(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016));
+        bibliotecaService.allBooks.add(new Book("book 2","author 2",2016));
+
+        assertEquals(true,bibliotecaService.checkoutBook("book 1"));
+    }
+
 
 
 }

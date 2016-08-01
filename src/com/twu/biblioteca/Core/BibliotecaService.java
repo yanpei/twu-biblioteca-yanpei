@@ -16,4 +16,21 @@ public class BibliotecaService {
     public ArrayList<Book> listBooks() {
         return allBooks;
     }
+
+    public boolean checkoutBook(String bookName) {
+        Book book = getBookByName(bookName);
+        if (book != null && !book.isCheckedOut) {
+            return true;
+        }
+        return false;
+    }
+
+    public Book getBookByName(String bookName){
+        for (Book book :
+                allBooks) {
+            if (book.bookName == bookName)
+                return book;
+        }
+        return null;
+    }
 }
