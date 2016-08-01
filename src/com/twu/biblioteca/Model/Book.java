@@ -14,4 +14,8 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
+    @Override
+    public String toString() {
+        return "BookName: "+bookName+"        Author: "+author+"        Published Year: "+yearPublished;
+    }
 }

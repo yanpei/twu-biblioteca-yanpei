@@ -17,10 +17,24 @@ public class MainMenuActionHandler implements IActionHandler {
         routerContext = context;
         bibliotecaService = service;
     }
-    
+
 
     public RouterMessage Handle(String userInput)
     {
-        return new RouterMessage(false, MainMenuText.mainMenuText);
+        if(userInput == "") {
+            return new RouterMessage(false, MainMenuText.mainMenuText);
+        }else if(userInput == "1"){
+            ArrayList<Book> listBooks = bibliotecaService.listBooks();
+            String result = "";
+            for (Book book : listBooks) {
+                result += book.toString();
+            }
+            return new RouterMessage(
+                    false,
+                    result+"\n---------------------------\n");
+        }else {
+            return new RouterMessage(false, MainMenuText.mainMenuText);
+        }
+
     }
 }

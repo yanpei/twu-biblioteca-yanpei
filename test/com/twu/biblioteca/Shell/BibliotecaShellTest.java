@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Shell;
 
 import com.twu.biblioteca.Core.BibliotecaService;
+import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Resources.MainMenuText;
 import com.twu.biblioteca.Router.BibliotecaRouter;
 import com.twu.biblioteca.Router.RouterMessage;
@@ -34,9 +35,22 @@ public class BibliotecaShellTest {
 
         String expectedResult = MainMenuText.mainMenuText;
         assertEquals(expectedResult,routerMessage.text);
-
     }
 
+    @Test
+    public void should_display_book_list_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016));
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
+
+
+        String expectedResult = "BookName: book 1"
+                              + "        Author: author 1"
+                              + "        Published Year: 2016\n"
+                              + "---------------------------\n";;
+        assertEquals(expectedResult,routerMessage.text);
+    }
 
 
 }
