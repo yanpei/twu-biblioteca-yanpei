@@ -17,11 +17,7 @@ public class BibliotecaShell {
 
     public void Execute()
     {
-        welcomeCusotme();
 
     }
 
-    public static void welcomeCusotme(){
-        System.out.println("Hello, welcome to the Biblioteca!");
-    }
 }
