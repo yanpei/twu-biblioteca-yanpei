@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 public class BibliotecaService {
     private String welcomeMessage = "Hello, welcome to the Biblioteca!";
-    private ArrayList<Book> allBooks = new ArrayList<Book>(){};
+    private ArrayList<Book> allBooks = new ArrayList<Book>(){
+        {
+            add(new Book("book 1","author 1",2016,false));
+            add(new Book("book 2","author 2",2016,false));
+        }
+    };
 
     public BibliotecaService() {
-    }
-
-    public BibliotecaService(ArrayList<Book> allBooks) {
-        this.allBooks = allBooks;
     }
 
     public String getWelcomeMessage() {

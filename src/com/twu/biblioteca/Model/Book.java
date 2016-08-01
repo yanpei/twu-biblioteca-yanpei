@@ -1,8 +1,5 @@
 package com.twu.biblioteca.Model;
 
-/**
- * Created by pyan on 8/1/16.
- */
 public class Book {
     private String bookName;
     private String author;
@@ -14,11 +11,6 @@ public class Book {
         this.author = author;
         this.yearPublished = yearPublished;
         this.isCheckedOut = isCheckedOut;
-    }
-
-    @Override
-    public String toString() {
-        return "BookName: "+ getBookName() +"\t\tAuthor: "+ getAuthor() +"\t\tPublished Year: "+ getYearPublished();
     }
 
     public boolean getIsCheckedOut() {

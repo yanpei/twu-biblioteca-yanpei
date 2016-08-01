@@ -24,11 +24,13 @@ class MainMenuActionHandler implements IActionHandler {
             ArrayList<Book> listBooks = bibliotecaService.listBooks();
             String result = "";
             for (Book book : listBooks) {
-                result += book.toString();
+                result += "BookName: "+ book.getBookName()
+                        +"\t\tAuthor: "+ book.getAuthor()
+                        +"\t\tPublished Year: "+ book.getYearPublished()+"\n";
             }
             return new RouterMessage(
                     false,
-                    true, "----------Book List--------\n"+result+"\n---------------------------\n");
+                    true, "----------Book List--------\n"+result+"---------------------------\n");
         }
 
         if(userInput.equals("2")){

@@ -1,8 +1,5 @@
 package com.twu.biblioteca.Resources;
 
-/**
- * Created by pyan on 8/1/16.
- */
 public class MainMenuText {
     private static String mainMenuText = "*************************************\n"
                                         +"Main Menu\n"

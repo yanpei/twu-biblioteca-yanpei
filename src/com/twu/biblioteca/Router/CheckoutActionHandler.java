@@ -1,7 +1,6 @@
 package com.twu.biblioteca.Router;
 
 import com.twu.biblioteca.Core.BibliotecaService;
-import com.twu.biblioteca.Resources.MainMenuText;
 
 class CheckoutActionHandler implements IActionHandler {
 
@@ -21,11 +20,11 @@ class CheckoutActionHandler implements IActionHandler {
         {
             return new RouterMessage(
                     false,
-                    true, "Thank you! Enjoy the book\n\n" + MainMenuText.getMainMenuText());
+                    true, "Thank you! Enjoy the book\n\n");
         }
         return new RouterMessage(
                 false,
-                true, "That book is not available.\n\n" + MainMenuText.getMainMenuText());
+                true, "That book is not available.\n\n");
     }
 
 }

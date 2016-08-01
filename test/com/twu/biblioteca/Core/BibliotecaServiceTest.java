@@ -18,32 +18,32 @@ public class BibliotecaServiceTest {
     @Test
     public void should_list_all_books_names_when_calling_listBooks_method(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
-
         List<Book> allBooksResult = bibliotecaService.listBooks();
 
-        assertEquals(1,allBooksResult.size());
+        assertEquals(2,allBooksResult.size());
         assertEquals("book 1", allBooksResult.get(0).getBookName());
+        assertEquals("book 2", allBooksResult.get(1).getBookName());
+
     }
 
     @Test
     public void Should_list_all_books_with_name_author_published_year(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
-
         List<Book> allBooksResult = bibliotecaService.listBooks();
 
-        assertEquals(1,allBooksResult.size());
+        assertEquals(2,allBooksResult.size());
         assertEquals("book 1", allBooksResult.get(0).getBookName());
         assertEquals("author 1", allBooksResult.get(0).getAuthor());
         assertEquals(2016, allBooksResult.get(0).getYearPublished());
+
+        assertEquals("book 2", allBooksResult.get(1).getBookName());
+        assertEquals("author 2", allBooksResult.get(1).getAuthor());
+        assertEquals(2016, allBooksResult.get(1).getYearPublished());
     }
 
     @Test
     public void should_return_true_when_call_checkoutBook_if_the_book_has_not_been_checked_out_and_the_book_exists(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
-        bibliotecaService.getAllBooks().add(new Book("book 2","author 2",2016,false));
 
         assertEquals(true, bibliotecaService.checkoutBook("book 1"));
     }
@@ -51,8 +51,7 @@ public class BibliotecaServiceTest {
     @Test
     public void should_return_false_when_call_checkoutBook_if_the_book_has_been_checked_out(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,true));
-        bibliotecaService.getAllBooks().add(new Book("book 2","author 2",2016,false));
+        bibliotecaService.getAllBooks().get(0).setIsCheckedOut(true);
 
         assertEquals(false,bibliotecaService.checkoutBook("book 1"));
     }
@@ -60,19 +59,13 @@ public class BibliotecaServiceTest {
     @Test
     public void should_return_false_when_call_checkoutBook_if_the_book_not_exist(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,true));
-        bibliotecaService.getAllBooks().add(new Book("book 2","author 2",2016,false));
 
         assertEquals(false,bibliotecaService.checkoutBook("book 3"));
     }
 
     @Test
     public void should_display_books_that_are_not_checked_out_when_calling_listBooks() {
-        ArrayList<Book> allBooks = new ArrayList<Book>();
-        allBooks.add(new Book("book 1", "author 1", 2016, false));
-        allBooks.add(new Book("book 2", "author 2", 2016, false));
-
-        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+        BibliotecaService bibliotecaService = new BibliotecaService();
         bibliotecaService.checkoutBook("book 1");
 
         ArrayList<Book> books = bibliotecaService.listBooks();
@@ -93,10 +86,8 @@ public class BibliotecaServiceTest {
 
     @Test
     public void should_return_true_when_call_returnBook_given_book_name_exist_and_been_checkedout(){
-        ArrayList<Book> allBooks = new ArrayList<Book>();
-        allBooks.add(new Book("book 1", "author 1", 2016, true));
-        allBooks.add(new Book("book 2", "author 2", 2016, false));
-        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getAllBooks().get(0).setIsCheckedOut(true);
 
         assertEquals(true,bibliotecaService.returnBook("book 1"));
     }
@@ -104,27 +95,21 @@ public class BibliotecaServiceTest {
 
     @Test
     public void should_return_false_when_call_returnBook_given_book_name_not_exist(){
-        ArrayList<Book> allBooks = new ArrayList<Book>();
-        allBooks.add(new Book("book 1", "author 1", 2016, false));
-        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+        BibliotecaService bibliotecaService = new BibliotecaService();
 
         assertEquals(false,bibliotecaService.returnBook("book 3"));
     }
 
     @Test
     public void should_return_false_when_call_returnBook_given_book_name_not_been_checked_out(){
-        ArrayList<Book> allBooks = new ArrayList<Book>();
-        allBooks.add(new Book("book 1", "author 1", 2016, false));
-        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+        BibliotecaService bibliotecaService = new BibliotecaService();
 
         assertEquals(false,bibliotecaService.returnBook("book 1"));
     }
 
     @Test
     public void should_display_books_that_are_returned_when_calling_listBooks(){
-        ArrayList<Book> allBooks = new ArrayList<Book>();
-        allBooks.add(new Book("book 1", "author 1", 2016, true));
-        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+        BibliotecaService bibliotecaService = new BibliotecaService();
 
         bibliotecaService.returnBook("book 1");
         ArrayList<Book> books = bibliotecaService.listBooks();

@@ -1,7 +1,6 @@
 package com.twu.biblioteca.Router;
 
 import com.twu.biblioteca.Core.BibliotecaService;
-import com.twu.biblioteca.Resources.MainMenuText;
 
 class ReturnBookActionHandler implements IActionHandler {
     private RouterContext routerContext;
@@ -21,11 +20,11 @@ class ReturnBookActionHandler implements IActionHandler {
             return new RouterMessage(
                     false,
                     true,
-                    "Thank you for returning the book.\n\n" + MainMenuText.getMainMenuText());
+                    "Thank you for returning the book.\n\n");
         }
         return new RouterMessage(
                 false,
                 true,
-                "That is not a valid book to return.\n\n" + MainMenuText.getMainMenuText());
+                "That is not a valid book to return.\n\n");
     }
 }
