@@ -50,6 +50,7 @@ public class BibliotecaShellTest {
                               + "        Published Year: 2016\n"
                               + "---------------------------\n";
         assertEquals(expectedResult,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
     }
 
     @Test
@@ -59,7 +60,19 @@ public class BibliotecaShellTest {
 
         String expectedResult = "Select a valid option!\n" + MainMenuText.mainMenuText;
         assertEquals(expectedResult,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+
     }
+
+    @Test
+    public void  Should_quit_when_user_input_is_Quit_and_current_state_is_MainMenu(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("q");
+
+        assertEquals(null,routerMessage.text);
+        assertEquals(true,routerMessage.exit);
+    }
+
 
 
 }

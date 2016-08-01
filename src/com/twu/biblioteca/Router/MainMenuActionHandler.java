@@ -30,7 +30,9 @@ public class MainMenuActionHandler implements IActionHandler {
             return new RouterMessage(
                     false,
                     result+"\n---------------------------\n");
-        }else {
+        }else if(userInput == "q"){
+            return new RouterMessage(true, null);
+        } else {
             return new RouterMessage(false,"Select a valid option!\n" + MainMenuText.mainMenuText);
         }
 
