@@ -21,9 +21,7 @@ public class MainMenuActionHandler implements IActionHandler {
 
     public RouterMessage Handle(String userInput)
     {
-        if(userInput == "") {
-            return new RouterMessage(false, MainMenuText.mainMenuText);
-        }else if(userInput == "1"){
+        if(userInput == "1"){
             ArrayList<Book> listBooks = bibliotecaService.listBooks();
             String result = "";
             for (Book book : listBooks) {
@@ -33,7 +31,7 @@ public class MainMenuActionHandler implements IActionHandler {
                     false,
                     result+"\n---------------------------\n");
         }else {
-            return new RouterMessage(false, MainMenuText.mainMenuText);
+            return new RouterMessage(false,"Select a valid option!\n" + MainMenuText.mainMenuText);
         }
 
     }

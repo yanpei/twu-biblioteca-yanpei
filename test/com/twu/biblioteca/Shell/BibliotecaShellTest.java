@@ -48,7 +48,16 @@ public class BibliotecaShellTest {
         String expectedResult = "BookName: book 1"
                               + "        Author: author 1"
                               + "        Published Year: 2016\n"
-                              + "---------------------------\n";;
+                              + "---------------------------\n";
+        assertEquals(expectedResult,routerMessage.text);
+    }
+
+    @Test
+    public void should_display_invalid_message_when_user_input_is_not_list_Books_and_current_state_is_MainMenu(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("9");
+
+        String expectedResult = "Select a valid option!\n" + MainMenuText.mainMenuText;
         assertEquals(expectedResult,routerMessage.text);
     }
 
