@@ -79,11 +79,14 @@ public class BibliotecaServiceTest {
         boolean isListed = true;
         for (Book book :
                 books) {
-            if (book.getBookName() == "book 1") {
+            if (book.getBookName().equals("book 1")) {
                 isListed = true;
+                break;
+            }else {
+                isListed = false;
             }
-            isListed = false;
         }
+
         assertEquals(true, bibliotecaService.getBookByName("book 1").getIsCheckedOut());
         assertEquals(false, isListed);
     }
@@ -116,4 +119,31 @@ public class BibliotecaServiceTest {
 
         assertEquals(false,bibliotecaService.returnBook("book 1"));
     }
+
+    @Test
+    public void should_display_books_that_are_returned_when_calling_listBooks(){
+        ArrayList<Book> allBooks = new ArrayList<Book>();
+        allBooks.add(new Book("book 1", "author 1", 2016, true));
+        BibliotecaService bibliotecaService = new BibliotecaService(allBooks);
+
+        bibliotecaService.returnBook("book 1");
+        ArrayList<Book> books = bibliotecaService.listBooks();
+
+        boolean isListed = true;
+        for (Book book :
+                books) {
+            if (book.getBookName().equals("book 1")) {
+                isListed = true;
+                break;
+            }else {
+                isListed = false;
+            }
+        }
+
+        assertEquals(false, bibliotecaService.getBookByName("book 1").getIsCheckedOut());
+        assertEquals(true, isListed);
+    }
+
+    
+
 }

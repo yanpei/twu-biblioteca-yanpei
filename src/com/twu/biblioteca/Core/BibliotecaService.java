@@ -54,6 +54,7 @@ public class BibliotecaService {
     public boolean returnBook(String bookName) {
         Book book = getBookByName(bookName);
         if(book != null && book.getIsCheckedOut()){
+            book.setIsCheckedOut(false);
             return true;
         }
         return false;
