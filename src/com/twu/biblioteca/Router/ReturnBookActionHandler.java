@@ -19,12 +19,12 @@ class ReturnBookActionHandler implements IActionHandler {
         {
             return new RouterMessage(
                     false,
-                    true,
+                    false,
                     "Thank you for returning the book.\n\n");
         }
         return new RouterMessage(
                 false,
-                true,
+                false,
                 "That is not a valid book to return.\n\n");
     }
 }

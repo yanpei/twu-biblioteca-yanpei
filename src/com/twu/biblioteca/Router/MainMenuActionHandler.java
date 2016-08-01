@@ -30,7 +30,7 @@ class MainMenuActionHandler implements IActionHandler {
             }
             return new RouterMessage(
                     false,
-                    true, "----------Book List--------\n"+result+"---------------------------\n");
+                    false, "----------Book List--------\n"+result+"---------------------------\n");
         }
 
         if(userInput.equals("2")){

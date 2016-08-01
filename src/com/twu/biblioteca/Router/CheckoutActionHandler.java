@@ -20,11 +20,11 @@ class CheckoutActionHandler implements IActionHandler {
         {
             return new RouterMessage(
                     false,
-                    true, "Thank you! Enjoy the book\n\n");
+                    false, "Thank you! Enjoy the book\n\n");
         }
         return new RouterMessage(
                 false,
-                true, "That book is not available.\n\n");
+                false, "That book is not available.\n\n");
     }
 
 }

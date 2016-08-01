@@ -32,7 +32,7 @@ public class BibliotecaShell {
             }
             if (message.getExit()) { break; }
             if(message.isWaitingInput()) {
-                userInput = inputScanner.next();
+                userInput = inputScanner.nextLine();
             } else {
                 userInput = null;
             }
