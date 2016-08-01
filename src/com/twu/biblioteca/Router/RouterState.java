@@ -7,5 +7,6 @@ public enum RouterState
 {
     Initialization,
     MainMenu,
-    Checkout
+    Checkout,
+    ReturnBook
 }

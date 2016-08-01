@@ -30,6 +30,9 @@ public class MainMenuActionHandler implements IActionHandler {
         }else if(userInput.equals("2")){
             routerContext.setNextState(RouterState.Checkout);
             return new RouterMessage(false,null);
+        }else if(userInput.equals("3")){
+            routerContext.setNextState(RouterState.ReturnBook);
+            return new RouterMessage(false, null);
         }else if(userInput.equals("q")){
             return new RouterMessage(true, null);
         }else {

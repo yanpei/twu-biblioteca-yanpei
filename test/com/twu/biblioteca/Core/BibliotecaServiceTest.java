@@ -143,7 +143,4 @@ public class BibliotecaServiceTest {
         assertEquals(false, bibliotecaService.getBookByName("book 1").getIsCheckedOut());
         assertEquals(true, isListed);
     }
-
-    
-
 }
