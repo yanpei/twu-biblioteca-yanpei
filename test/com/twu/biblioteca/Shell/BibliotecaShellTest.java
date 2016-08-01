@@ -40,7 +40,7 @@ public class BibliotecaShellTest {
     @Test
     public void should_display_book_list_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016));
+        bibliotecaService.allBooks.add(new Book("book 1","author 1",2016,false));
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
 

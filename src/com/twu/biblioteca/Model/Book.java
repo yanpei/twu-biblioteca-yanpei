@@ -9,11 +9,11 @@ public class Book {
     public int yearPublished;
     public boolean isCheckedOut;
 
-    public Book(String bookName,String author,int yearPublished){
+    public Book(String bookName,String author,int yearPublished,boolean isCheckedOut){
         this.bookName = bookName;
         this.author = author;
         this.yearPublished = yearPublished;
-        isCheckedOut = false;
+        this.isCheckedOut = isCheckedOut;
     }
 
     @Override
