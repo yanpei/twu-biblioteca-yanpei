@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BibliotecaService {
     private String welcomeMessage = "Hello, welcome to the Biblioteca!";
-    public ArrayList<Book> allBooks = new ArrayList<Book>();
+    private ArrayList<Book> allBooks = new ArrayList<Book>(){};
 
     public BibliotecaService() {
     }
@@ -26,7 +26,7 @@ public class BibliotecaService {
     public ArrayList<Book> listBooks() {
         ArrayList<Book> bookList = new ArrayList<Book>();
         for (Book book :
-                allBooks) {
+                getAllBooks()) {
             if(!book.getIsCheckedOut()){
                 bookList.add(book);
             }
@@ -44,8 +44,8 @@ public class BibliotecaService {
     }
 
     public Book getBookByName(String bookName){
-        for (Book book : allBooks) {
-            if (book.getBookName() == bookName)
+        for (Book book : getAllBooks()) {
+            if (book.getBookName().equals(bookName))
                 return book;
         }
         return null;

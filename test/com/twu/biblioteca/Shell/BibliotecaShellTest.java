@@ -8,8 +8,6 @@ import com.twu.biblioteca.Router.RouterMessage;
 import com.twu.biblioteca.Router.RouterState;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaShellTest {
@@ -20,7 +18,7 @@ public class BibliotecaShellTest {
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
 
         String expectedResult = "Hello, welcome to the Biblioteca!";
-        assertEquals(expectedResult, routerMessage.text);
+        assertEquals(expectedResult, routerMessage.getText());
     }
 
     @Test
@@ -28,8 +26,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
 
-        String expectedResult = MainMenuText.mainMenuText;
-        assertEquals(expectedResult,routerMessage.text);
+        String expectedResult = MainMenuText.getMainMenuText();
+        assertEquals(expectedResult, routerMessage.getText());
     }
 
     @Test
@@ -40,12 +38,13 @@ public class BibliotecaShellTest {
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
 
 
-        String expectedResult = "BookName: book 1"
+        String expectedResult = "----------Book List--------\n"
+                              + "BookName: book 1"
                               + "\t\tAuthor: author 1"
                               + "\t\tPublished Year: 2016\n"
-                              + "---------------------------\n";
-        assertEquals(expectedResult,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+                              + "---------------------------\n" + MainMenuText.getMainMenuText();
+        assertEquals(expectedResult, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -53,9 +52,9 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("9");
 
-        String expectedResult = "Select a valid option!\n" + MainMenuText.mainMenuText;
-        assertEquals(expectedResult,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        String expectedResult = "Select a valid option!\n" + MainMenuText.getMainMenuText();
+        assertEquals(expectedResult, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
 
     }
 
@@ -64,8 +63,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("q");
 
-        assertEquals(null,routerMessage.text);
-        assertEquals(true,routerMessage.exit);
+        assertEquals(null, routerMessage.getText());
+        assertEquals(true, routerMessage.getExit());
     }
 
     @Test
@@ -73,8 +72,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("2");
 
-        assertEquals(null,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        assertEquals(null, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -88,12 +87,13 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter2 = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter2.getRouterMessage("1");
 
-        String expectedResult = "BookName: book 1"
+        String expectedResult = "----------Book List--------\n"
+                + "BookName: book 1"
                 + "\t\tAuthor: author 1"
                 + "\t\tPublished Year: 2016\n"
-                + "---------------------------\n";
-        assertEquals(expectedResult,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+                + "---------------------------\n" + MainMenuText.getMainMenuText();
+        assertEquals(expectedResult, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -104,8 +104,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
 
-        assertEquals("Thank you! Enjoy the book\n\n" + MainMenuText.mainMenuText,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        assertEquals("Thank you! Enjoy the book\n\n" + MainMenuText.getMainMenuText(), routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -116,8 +116,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
 
-        assertEquals("That book is not available.\n\n" + MainMenuText.mainMenuText,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        assertEquals("That book is not available.\n\n" + MainMenuText.getMainMenuText(), routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -125,8 +125,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("3");
 
-        assertEquals(null,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        assertEquals(null, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -139,12 +139,13 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter2 = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter2.getRouterMessage("1");
 
-        String expectedResult = "BookName: book 1"
+        String expectedResult = "----------Book List--------\n"
+                + "BookName: book 1"
                 + "\t\tAuthor: author 1"
                 + "\t\tPublished Year: 2016\n"
-                + "---------------------------\n";
-        assertEquals(expectedResult,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+                + "---------------------------\n" + MainMenuText.getMainMenuText();
+        assertEquals(expectedResult, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -155,8 +156,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.ReturnBook, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
 
-        assertEquals("Thank you for returning the book.\n\n" + MainMenuText.mainMenuText,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        assertEquals("Thank you for returning the book.\n\n" + MainMenuText.getMainMenuText(), routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
     @Test
@@ -167,8 +168,8 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.ReturnBook, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 2");
 
-        assertEquals("That is not a valid book to return.\n\n" + MainMenuText.mainMenuText,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
+        assertEquals("That is not a valid book to return.\n\n" + MainMenuText.getMainMenuText(), routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
     }
 
 }

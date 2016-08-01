@@ -21,15 +21,15 @@ public class BibliotecaRouter {
     {
         switch (m_context.getCurrentState()) {
             case Initialization:
-                return new WelcomeActionHandler(m_context,m_service);
+                return new WelcomeActionHandler(m_context, m_service);
             case MainMenu:
-                return new MainMenuActionHandler(m_context,m_service);
+                return new MainMenuActionHandler(m_context, m_service);
             case Checkout:
-                return new CheckoutActionHandler(m_context,m_service);
+                return new CheckoutActionHandler(m_context, m_service);
             case ReturnBook:
                 return new ReturnBookActionHandler(m_context, m_service);
             default:
-                return new MainMenuActionHandler(m_context,m_service);
+                return new MainMenuActionHandler(m_context, m_service);
         }
     }
 

@@ -30,10 +30,13 @@ public class BibliotecaShell {
         while (true)
         {
             RouterMessage message = router.getRouterMessage(userInput);
-            m_outputStream.println(message.text);
-            if (message.exit) { break; }
-
-            userInput = inputScanner.next();
+            if(message.getText() != null){
+                m_outputStream.println(message.getText());
+            }
+            if (message.getExit()) { break; }
+            if(message.isWaitingInput()) {
+                userInput = inputScanner.next();
+            }
         }
     }
 }

@@ -2,14 +2,11 @@ package com.twu.biblioteca.Router;
 
 import com.twu.biblioteca.Core.BibliotecaService;
 
-/**
- * Created by pyan on 8/1/16.
- */
-public class WelcomeActionHandler implements IActionHandler {
+class WelcomeActionHandler implements IActionHandler {
     private RouterContext routerContext;
     private BibliotecaService bibliotecaService;
 
-    public WelcomeActionHandler(RouterContext context, BibliotecaService service) {
+    WelcomeActionHandler(RouterContext context, BibliotecaService service) {
         routerContext = context;
         bibliotecaService = service;
     }
@@ -18,6 +15,6 @@ public class WelcomeActionHandler implements IActionHandler {
     public RouterMessage Handle(String userInput) {
         String welcomeMessage = bibliotecaService.getWelcomeMessage();
         routerContext.setNextState(RouterState.MainMenu);
-        return new RouterMessage(false, welcomeMessage);
+        return new RouterMessage(false,false,welcomeMessage);
     }
 }

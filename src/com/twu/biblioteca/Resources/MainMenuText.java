@@ -4,7 +4,7 @@ package com.twu.biblioteca.Resources;
  * Created by pyan on 8/1/16.
  */
 public class MainMenuText {
-    public static String mainMenuText = "*************************************\n"
+    private static String mainMenuText = "*************************************\n"
                                         +"Main Menu\n"
                                         +"************************************\n"
                                         +"      1. List books\n"
@@ -13,4 +13,8 @@ public class MainMenuText {
                                         +"\n"
                                         +"      q. Quit\n"
                                         +"-------------------------------------";
+
+    public static String getMainMenuText() {
+        return mainMenuText;
+    }
 }

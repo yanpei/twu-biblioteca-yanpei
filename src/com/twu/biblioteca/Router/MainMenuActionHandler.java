@@ -5,11 +5,11 @@ import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Resources.MainMenuText;
 import java.util.ArrayList;
 
-public class MainMenuActionHandler implements IActionHandler {
+class MainMenuActionHandler implements IActionHandler {
     private RouterContext routerContext;
     private BibliotecaService bibliotecaService;
 
-    public MainMenuActionHandler(RouterContext context, BibliotecaService service) {
+    MainMenuActionHandler(RouterContext context, BibliotecaService service) {
         routerContext = context;
         bibliotecaService = service;
     }
@@ -17,7 +17,7 @@ public class MainMenuActionHandler implements IActionHandler {
     public RouterMessage Handle(String userInput)
     {
         if(userInput == null){
-            return new RouterMessage(false,MainMenuText.mainMenuText);
+            return new RouterMessage(false, true, MainMenuText.getMainMenuText());
         }else if(userInput.equals("1")){
             ArrayList<Book> listBooks = bibliotecaService.listBooks();
             String result = "";
@@ -26,17 +26,17 @@ public class MainMenuActionHandler implements IActionHandler {
             }
             return new RouterMessage(
                     false,
-                    result+"\n---------------------------\n");
+                    true, "----------Book List--------\n"+result+"\n---------------------------\n" + MainMenuText.getMainMenuText());
         }else if(userInput.equals("2")){
             routerContext.setNextState(RouterState.Checkout);
-            return new RouterMessage(false,null);
+            return new RouterMessage(false, true, null);
         }else if(userInput.equals("3")){
             routerContext.setNextState(RouterState.ReturnBook);
-            return new RouterMessage(false, null);
+            return new RouterMessage(false, true, null);
         }else if(userInput.equals("q")){
-            return new RouterMessage(true, null);
+            return new RouterMessage(true, false, null);
         }else {
-            return new RouterMessage(false,"Select a valid option!\n" + MainMenuText.mainMenuText);
+            return new RouterMessage(false, true, "Select a valid option!\n" + MainMenuText.getMainMenuText());
         }
 
     }
