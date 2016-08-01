@@ -73,6 +73,13 @@ public class BibliotecaShellTest {
         assertEquals(true,routerMessage.exit);
     }
 
+    @Test
+    public void  should_waiting_for_user_input_when_user_select_Checkout_books_and_current_status_is_MainMenu(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("2");
 
+        assertEquals(null,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+    }
 
 }

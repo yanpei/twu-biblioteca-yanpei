@@ -30,6 +30,9 @@ public class MainMenuActionHandler implements IActionHandler {
             return new RouterMessage(
                     false,
                     result+"\n---------------------------\n");
+        }else if(userInput == "2"){
+            routerContext.setNextState(RouterState.Checkout);
+            return new RouterMessage(false,null);
         }else if(userInput == "q"){
             return new RouterMessage(true, null);
         } else {

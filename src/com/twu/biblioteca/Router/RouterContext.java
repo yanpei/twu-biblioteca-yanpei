@@ -11,7 +11,7 @@ public class RouterContext {
         this.currentState = currentState;
     }
 
-    public void SetNextState(RouterState state)
+    public void setNextState(RouterState state)
     {
         currentState = state;
     }
