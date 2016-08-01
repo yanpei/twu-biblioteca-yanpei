@@ -75,17 +75,6 @@ public class BibliotecaShellTest {
     }
 
     @Test
-    public void should_display_MainMenu_when_user_input_check_out_book_name_and_continue_execution_given_current_state_is_CheckoutBook(){
-        BibliotecaService bibliotecaService = new BibliotecaService();
-        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
-        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
-        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
-
-        assertEquals(MainMenuText.mainMenuText,routerMessage.text);
-        assertEquals(false,routerMessage.exit);
-    }
-
-    @Test
     public void should_display_not_checked_out_books_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
         BibliotecaService bibliotecaService = new BibliotecaService();
         bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
@@ -98,6 +87,18 @@ public class BibliotecaShellTest {
                 + "\t\tPublished Year: 2016\n"
                 + "---------------------------\n";
         assertEquals(expectedResult,routerMessage.text);
+        assertEquals(false,routerMessage.exit);
+    }
+
+    @Test
+    public void should_display_successful_message_when_current_state_is_Checkout_and_user_input_book_name_valid(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getAllBooks().add(new Book("book 1","author 1",2016,false));
+
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Checkout, bibliotecaService);
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
+
+        assertEquals("Thank you! Enjoy the book\n\n" + MainMenuText.mainMenuText,routerMessage.text);
         assertEquals(false,routerMessage.exit);
     }
 

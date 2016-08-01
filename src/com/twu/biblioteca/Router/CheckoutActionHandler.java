@@ -25,7 +25,7 @@ public class CheckoutActionHandler implements IActionHandler {
             routerContext.setNextState(RouterState.MainMenu);
             return new RouterMessage(
                     false,
-                    MainMenuText.mainMenuText);
+                    "Thank you! Enjoy the book\n\n" + MainMenuText.mainMenuText);
         }
         throw new NotImplementedException();
     }
