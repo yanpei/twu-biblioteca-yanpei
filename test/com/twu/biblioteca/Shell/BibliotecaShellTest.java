@@ -324,4 +324,16 @@ public class BibliotecaShellTest {
         assertEquals(expectedResult,routerMessage.getText());
     }
 
+    @Test
+    public void should_display_MainMenu_with_information_option_when_current_state_is_MainMenu_and_select_information_and_continue_execution(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+
+        bibliotecaRouter.getRouterMessage("7");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+
+        assertEquals(MainMenuText.getMainMenuTextAfterLogin(), routerMessage.getText());
+    }
+
 }
