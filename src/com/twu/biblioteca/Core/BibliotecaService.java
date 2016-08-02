@@ -27,8 +27,8 @@ public class BibliotecaService {
 
     private ArrayList<User> users = new ArrayList<User>(){
         {
-            add(new User("000-0001","12345",false));
-            add(new User("000-0005","12345",false));
+            add(new User("000-0001","12345","user 1","user1@163.com","123234"));
+            add(new User("000-0005","12345","user 2","user2@163.com","123409"));
         }
     };
 

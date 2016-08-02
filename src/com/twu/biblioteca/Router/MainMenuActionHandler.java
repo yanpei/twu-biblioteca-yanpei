@@ -3,6 +3,7 @@ package com.twu.biblioteca.Router;
 import com.twu.biblioteca.Core.BibliotecaService;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Model.User;
 import com.twu.biblioteca.Resources.MainMenuText;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,16 @@ class MainMenuActionHandler implements IActionHandler {
         if(userInput.equals("6")){
             routerContext.setNextState(RouterState.Login);
             return new RouterMessage(false, true, "Please login - split library number and password with " + "\",\"\n");
+        }
+
+        if(userInput.equals("7")){
+            User user = bibliotecaService.getLoginUser();
+            String result = "Name: "+ user.getName()
+                    + "\t\tEmail Address: " + user.getEmaiAddress()
+                    + "\t\tPhone Number: " + user.getPhoneNumber() + "\n";
+            return new RouterMessage(
+                    false,
+                    false, "----------My Information--------\n"+result+"---------------------------\n");
         }
 
         if(userInput.equals("q")){

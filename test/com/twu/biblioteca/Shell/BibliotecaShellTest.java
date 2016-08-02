@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Shell;
 
 import com.twu.biblioteca.Core.BibliotecaService;
+import com.twu.biblioteca.Model.User;
 import com.twu.biblioteca.Resources.MainMenuText;
 import com.twu.biblioteca.Router.BibliotecaRouter;
 import com.twu.biblioteca.Router.RouterMessage;
@@ -141,7 +142,10 @@ public class BibliotecaShellTest {
 
     @Test
     public void should_waiting_for_user_input_when_user_select_ReturnBook_and_current_state_is_MainMenu(){
-        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
+
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("3");
 
         assertEquals(null, routerMessage.getText());
@@ -303,5 +307,21 @@ public class BibliotecaShellTest {
         assertEquals(MainMenuText.getMainMenuText(),routerMessage.getText());
     }
 
+    @Test
+    public void should_display_information_when_current_state_is_MainMenu_and_select_information_option_and_user_has_login(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        User user = bibliotecaService.getUsers().get(0);
+        bibliotecaService.setLoginUser(user);
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("7");
+
+        String expectedResult = "----------My Information--------\n"
+                +"Name: "+ user.getName()
+                + "\t\tEmail Address: " + user.getEmaiAddress()
+                + "\t\tPhone Number: " + user.getPhoneNumber() + "\n"
+                + "---------------------------\n";
+        assertEquals(expectedResult,routerMessage.getText());
+    }
 
 }
