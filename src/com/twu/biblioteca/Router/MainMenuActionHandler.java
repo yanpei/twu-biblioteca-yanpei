@@ -57,8 +57,14 @@ class MainMenuActionHandler implements IActionHandler {
             return new RouterMessage(
                     false,
                     false, "----------Movie List--------\n"+result+"---------------------------\n");
-
         }
+
+        if(userInput.equals("5")){
+            routerContext.setNextState(RouterState.CheckoutMovie);
+            return new RouterMessage(false, true, null);
+        }
+
+
         if(userInput.equals("q")){
             return new RouterMessage(true, false, null);
         }
