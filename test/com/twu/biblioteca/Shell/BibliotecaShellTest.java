@@ -284,4 +284,24 @@ public class BibliotecaShellTest {
         assertEquals("Please login - split library number and password with " + "\",\"\n",routerMessage.getText());
     }
 
+    @Test
+    public void should_display_main_menu_with_informotion_option_when_current_state_is_Login_and_user_input_valid_library_number_and_password_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Login, new BibliotecaService());
+        bibliotecaRouter.getRouterMessage("000-0001,12345");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+
+        assertEquals(MainMenuText.getMainMenuTextAfterLogin(),routerMessage.getText());
+    }
+
+
+    @Test
+    public void should_display_main_menu_without_information_option_when_current_state_is_Login_and_user_input_invalid_library_number_or_password_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Login, new BibliotecaService());
+        bibliotecaRouter.getRouterMessage("000-0001,12324");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+
+        assertEquals(MainMenuText.getMainMenuText(),routerMessage.getText());
+    }
+
+
 }

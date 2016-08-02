@@ -19,7 +19,10 @@ class MainMenuActionHandler implements IActionHandler {
     public RouterMessage Handle(String userInput)
     {
         if(userInput == null){
-            return new RouterMessage(false, true, MainMenuText.getMainMenuText());
+            if(bibliotecaService.getLoginUser() == null){
+                return new RouterMessage(false, true, MainMenuText.getMainMenuText());
+            }
+            return new RouterMessage(false, true, MainMenuText.getMainMenuTextAfterLogin());
         }
 
         if(userInput.equals("1")){
