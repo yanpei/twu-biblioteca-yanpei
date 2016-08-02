@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class BibliotecaServiceTest {
     @Test
@@ -181,7 +182,7 @@ public class BibliotecaServiceTest {
         boolean isLoginSuccessful = bibliotecaService.login("000-0001,23333");
 
         assertEquals(false, isLoginSuccessful);
-        assertNotNull(bibliotecaService.getLoginUser());
+        assertNull(bibliotecaService.getLoginUser());
     }
 
     @Test
@@ -191,7 +192,7 @@ public class BibliotecaServiceTest {
         boolean isLoginSuccessful = bibliotecaService.login("000-0002,12345");
 
         assertEquals(false, isLoginSuccessful);
-        assertNotNull(bibliotecaService.getLoginUser());
+        assertNull(bibliotecaService.getLoginUser());
     }
 
     @Test
@@ -204,5 +205,21 @@ public class BibliotecaServiceTest {
 
         assertEquals(true, isCheckoutBookSuccessful);
         assertEquals(bibliotecaService.getUsers().get(0),checkoutUser);
+    }
+
+    @Test
+    public void should_return_true_and_update_checked_book_isChecked_and_checkoutUser_when_calling_returnBook_given_valid_book_and_loginUser_equal_with_checkOutUser_of_book(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getBookByName("book 1").setIsCheckedOut(true);
+        bibliotecaService.getBookByName("book 1").setCheckoutUser(bibliotecaService.getUsers().get(0));
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
+
+        boolean isCheckoutBookSuccessful = bibliotecaService.returnBook("book 1");
+
+        User checkoutUser = bibliotecaService.getBookByName("book 1").getCheckoutUser();
+        boolean isCheckedout = bibliotecaService.getBookByName("book 1").getIsCheckedOut();
+        assertEquals(true, isCheckoutBookSuccessful);
+        assertEquals(null, checkoutUser);
+        assertEquals(false, isCheckedout);
     }
 }
