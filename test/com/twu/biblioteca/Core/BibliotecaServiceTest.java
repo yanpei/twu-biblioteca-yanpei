@@ -182,5 +182,15 @@ public class BibliotecaServiceTest {
         assertNotNull(bibliotecaService.getLoginUser());
     }
 
+    @Test
+    public void should_return_false_and_when_calling_login_given_username_not_exists() {
+        BibliotecaService bibliotecaService = new BibliotecaService();
+
+        boolean isLoginSuccessful = bibliotecaService.login("000-0002,12345");
+
+        assertEquals(false, isLoginSuccessful);
+        assertNotNull(bibliotecaService.getLoginUser());
+    }
+    
 
 }

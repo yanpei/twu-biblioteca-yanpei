@@ -112,6 +112,6 @@ public class BibliotecaService {
                 return false;
             }
         }
-        throw new NotImplementedException();
+        return false;
     }
 }
