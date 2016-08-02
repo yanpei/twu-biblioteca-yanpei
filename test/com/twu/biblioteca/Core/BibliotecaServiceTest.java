@@ -222,4 +222,20 @@ public class BibliotecaServiceTest {
         assertEquals(null, checkoutUser);
         assertEquals(false, isCheckedout);
     }
+
+    @Test
+    public void should_return_false_when_calling_checkoutBook_given_valid_book_but_loginUser_not_equal_with_checkOutUser_of_book(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.getBookByName("book 1").setIsCheckedOut(true);
+        bibliotecaService.getBookByName("book 1").setCheckoutUser(bibliotecaService.getUsers().get(0));
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(1));
+
+        boolean isCheckoutBookSuccessful = bibliotecaService.returnBook("book 1");
+
+        User checkoutUser = bibliotecaService.getBookByName("book 1").getCheckoutUser();
+        boolean isCheckedout = bibliotecaService.getBookByName("book 1").getIsCheckedOut();
+        assertEquals(false, isCheckoutBookSuccessful);
+        assertEquals(bibliotecaService.getUsers().get(0), checkoutUser);
+        assertEquals(true, isCheckedout);
+    }
 }
