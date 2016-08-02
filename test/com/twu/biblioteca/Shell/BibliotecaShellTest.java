@@ -227,4 +227,14 @@ public class BibliotecaShellTest {
         assertEquals(true,routerMessage.isWaitingInput());
         assertEquals(false,routerMessage.getExit());
     }
+
+    @Test
+    public void should_display_MainMenu_when_current_state_is_CheckoutMovie_and_user_input_movie_name_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.CheckoutMovie, new BibliotecaService());
+        bibliotecaRouter.getRouterMessage("5");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+
+        assertEquals(MainMenuText.getMainMenuText(),routerMessage.getText());
+        assertEquals(false,routerMessage.getExit());
+    }
 }
