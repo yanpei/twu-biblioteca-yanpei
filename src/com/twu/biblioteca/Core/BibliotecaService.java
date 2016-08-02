@@ -2,8 +2,11 @@ package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Model.User;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BibliotecaService {
@@ -20,6 +23,18 @@ public class BibliotecaService {
             add(new Movie("movie 2",2016,"director 2",0));
         }
     };
+
+    private ArrayList<User> users = new ArrayList<User>(){
+        {
+            add(new User("000-0001","12345"));
+        }
+    };
+
+    public User getLoginUser() {
+        return loginUser;
+    }
+
+    private User loginUser = new User();
 
     public BibliotecaService() {
     }
@@ -83,4 +98,20 @@ public class BibliotecaService {
         return false;
     }
 
+    public boolean login(String loginMessage) {
+        String libraryNumber = loginMessage.split(",")[0];
+        String password = loginMessage.split(",")[1];
+
+        for (User user:
+             users) {
+            if(user.getLibraryNumber().equals(libraryNumber)){
+                if(user.getPassword().equals(password)){
+                    loginUser = user;
+                    return true;
+                }
+                return false;
+            }
+        }
+        throw new NotImplementedException();
+    }
 }

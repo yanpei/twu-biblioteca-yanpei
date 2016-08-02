@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class BibliotecaServiceTest {
     @Test
@@ -160,5 +161,26 @@ public class BibliotecaServiceTest {
 
         assertEquals(false,isCheckedSuccessful);
     }
+
+    @Test
+    public void should_return_true_and_when_calling_login_given_username_exists_password_true() {
+        BibliotecaService bibliotecaService = new BibliotecaService();
+
+        boolean isLoginSuccessful = bibliotecaService.login("000-0001,12345");
+
+        assertEquals(true, isLoginSuccessful);
+        assertNotNull(bibliotecaService.getLoginUser());
+    }
+
+    @Test
+    public void should_return_false_and_when_calling_login_given_username_exists_password_true() {
+        BibliotecaService bibliotecaService = new BibliotecaService();
+
+        boolean isLoginSuccessful = bibliotecaService.login("000-0001,12345");
+
+        assertEquals(true, isLoginSuccessful);
+        assertNotNull(bibliotecaService.getLoginUser());
+    }
+
 
 }
