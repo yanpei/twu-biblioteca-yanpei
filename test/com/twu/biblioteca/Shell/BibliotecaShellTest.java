@@ -84,7 +84,10 @@ public class BibliotecaShellTest {
 
     @Test
     public void should_waiting_for_user_input_when_user_select_Checkout_books_and_current_status_is_MainMenu(){
-        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
+
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("2");
 
         assertEquals(null, routerMessage.getText());
@@ -242,7 +245,7 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("6");
 
-        assertEquals("Please login - split library number and password with " + ",", routerMessage.getText());
+        assertEquals("Please login - split library number and password with " + "\",\"\n", routerMessage.getText());
         assertEquals(true,routerMessage.isWaitingInput());
         assertEquals(false,routerMessage.getExit());
     }
@@ -257,6 +260,13 @@ public class BibliotecaShellTest {
         assertEquals(false,routerMessage.getExit());
     }
 
+    @Test
+    public void should_display_login_message_when_current_state_is_MainMenu_and_user_select_checkoutBook_and_user_not_login(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("2");
+
+        assertEquals("Please login - split library number and password with " + "\",\"\n",routerMessage.getText());
+    }
 
 
 }

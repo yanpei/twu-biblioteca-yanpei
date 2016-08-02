@@ -39,7 +39,7 @@ public class BibliotecaService {
         this.loginUser = loginUser;
     }
 
-    private User loginUser = new User();
+    private User loginUser;
 
     public BibliotecaService() {
     }

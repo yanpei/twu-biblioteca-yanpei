@@ -36,6 +36,10 @@ class MainMenuActionHandler implements IActionHandler {
         }
 
         if(userInput.equals("2")){
+            if(bibliotecaService.getLoginUser() == null){
+                routerContext.setNextState(RouterState.Login);
+                return new RouterMessage(false,true,"Please login - split library number and password with " + "\",\"\n");
+            }
             routerContext.setNextState(RouterState.Checkout);
             return new RouterMessage(false, true, null);
         }
@@ -66,7 +70,7 @@ class MainMenuActionHandler implements IActionHandler {
 
         if(userInput.equals("6")){
             routerContext.setNextState(RouterState.Login);
-            return new RouterMessage(false, true, "Please login - split library number and password with " + ",");
+            return new RouterMessage(false, true, "Please login - split library number and password with " + "\",\"\n");
         }
 
         if(userInput.equals("q")){
