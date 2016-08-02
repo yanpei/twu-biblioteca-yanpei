@@ -6,10 +6,12 @@ package com.twu.biblioteca.Model;
 public class User {
     private String libraryNumber;
     private String password;
+    private boolean isLogin;
 
-    public User(String libraryNumber, String password) {
+    public User(String libraryNumber, String password,boolean isLogin) {
         this.libraryNumber = libraryNumber;
         this.password = password;
+        this.isLogin = isLogin;
     }
 
     public User() {
@@ -26,5 +28,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isLogin() {
+        return isLogin;
     }
 }

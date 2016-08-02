@@ -3,10 +3,7 @@ package com.twu.biblioteca.Core;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
 import com.twu.biblioteca.Model.User;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class BibliotecaService {
@@ -26,7 +23,7 @@ public class BibliotecaService {
 
     private ArrayList<User> users = new ArrayList<User>(){
         {
-            add(new User("000-0001","12345"));
+            add(new User("000-0001","12345",false));
         }
     };
 

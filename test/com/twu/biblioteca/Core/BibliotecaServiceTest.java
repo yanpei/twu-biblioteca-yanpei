@@ -137,7 +137,7 @@ public class BibliotecaServiceTest {
         BibliotecaService bibliotecaService = new BibliotecaService();
         List<Movie> allMovieResult = bibliotecaService.listMovies();
 
-        assertEquals(1, allMovieResult.size());
+        assertEquals(2, allMovieResult.size());
         assertEquals("movie 1", allMovieResult.get(0).getName());
         assertEquals(2016, allMovieResult.get( 0).getYear());
         assertEquals("director 1", allMovieResult.get(0).getDirector());
@@ -191,6 +191,4 @@ public class BibliotecaServiceTest {
         assertEquals(false, isLoginSuccessful);
         assertNotNull(bibliotecaService.getLoginUser());
     }
-    
-
 }

@@ -65,6 +65,11 @@ class MainMenuActionHandler implements IActionHandler {
         }
 
 
+        if(userInput.equals("6")){
+            routerContext.setNextState(RouterState.Login);
+            return new RouterMessage(false, true, null);
+        }
+
         if(userInput.equals("q")){
             return new RouterMessage(true, false, null);
         }

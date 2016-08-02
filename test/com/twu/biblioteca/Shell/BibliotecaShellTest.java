@@ -238,5 +238,12 @@ public class BibliotecaShellTest {
         assertEquals(false,routerMessage.getExit());
     }
 
+    @Test
+    public void should_waiting_for_user_input_when_current_state_is_MainMenu_and_select_login(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("6");
 
+        assertEquals(true,routerMessage.isWaitingInput());
+        assertEquals(false,routerMessage.getExit());
+    }
 }
