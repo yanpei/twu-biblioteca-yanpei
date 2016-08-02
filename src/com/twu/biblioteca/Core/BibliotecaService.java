@@ -103,6 +103,7 @@ public class BibliotecaService {
              users) {
             if(user.getLibraryNumber().equals(libraryNumber)){
                 if(user.getPassword().equals(password)){
+                    user.setLogin(true);
                     loginUser = user;
                     return true;
                 }

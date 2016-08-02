@@ -193,7 +193,6 @@ public class BibliotecaShellTest {
         assertEquals(false, routerMessage.getExit());
     }
 
-
     @Test
     public void should_display_movie_list_with_name_year_director_and_movie_rating_when_current_state_is_MainMenu_and_userInput_is_ListMovies(){
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
@@ -243,7 +242,19 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("6");
 
+        assertEquals("Please login - split library number and password with " + ",", routerMessage.getText());
         assertEquals(true,routerMessage.isWaitingInput());
         assertEquals(false,routerMessage.getExit());
     }
+
+    @Test
+    public void should_display_MainMenu_when_current_state_is_Login_and_user_input_username_and_password_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.Login, new BibliotecaService());
+        bibliotecaRouter.getRouterMessage("000-0001,12345");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+
+        assertEquals(true,routerMessage.isWaitingInput());
+        assertEquals(false,routerMessage.getExit());
+    }
+
 }

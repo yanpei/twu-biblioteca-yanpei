@@ -170,6 +170,7 @@ public class BibliotecaServiceTest {
 
         assertEquals(true, isLoginSuccessful);
         assertNotNull(bibliotecaService.getLoginUser());
+        assertEquals(true,bibliotecaService.getLoginUser().isLogin());
     }
 
     @Test

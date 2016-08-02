@@ -64,10 +64,9 @@ class MainMenuActionHandler implements IActionHandler {
             return new RouterMessage(false, true, null);
         }
 
-
         if(userInput.equals("6")){
             routerContext.setNextState(RouterState.Login);
-            return new RouterMessage(false, true, null);
+            return new RouterMessage(false, true, "Please login - split library number and password with " + ",");
         }
 
         if(userInput.equals("q")){
