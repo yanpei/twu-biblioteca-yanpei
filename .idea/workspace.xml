@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66b4c9d4-c660-4a90-b9bd-59dc82b37791" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Core/BibliotecaService$2.class" afterPath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Core/BibliotecaService$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Core/BibliotecaService.class" afterPath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Core/BibliotecaService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Router/MainMenuActionHandler.class" afterPath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Router/MainMenuActionHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/Core/BibliotecaServiceTest.class" afterPath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/Core/BibliotecaServiceTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/Shell/BibliotecaShellTest.class" afterPath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/Shell/BibliotecaShellTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Core/BibliotecaService.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Core/BibliotecaService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Router/MainMenuActionHandler.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Router/MainMenuActionHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/Core/BibliotecaServiceTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/Core/BibliotecaServiceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/Shell/BibliotecaShellTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/Shell/BibliotecaShellTest.java" />
     </list>
     <ignored path="biblioteca.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,8 +60,8 @@
       <file leaf-file-name="BibliotecaServiceTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/Core/BibliotecaServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="146" column="94" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="94" />
+            <state relative-caret-position="415">
+              <caret line="160" column="26" selection-start-line="160" selection-start-column="26" selection-end-line="160" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -199,8 +190,8 @@
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Resources/MainMenuText.java" />
         <option value="$PROJECT_DIR$/test/com/twu/biblioteca/Shell/BibliotecaShellTest.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Router/MainMenuActionHandler.java" />
-        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/Core/BibliotecaServiceTest.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Core/BibliotecaService.java" />
+        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/Core/BibliotecaServiceTest.java" />
       </list>
     </option>
   </component>
@@ -1409,8 +1400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/Core/BibliotecaServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="146" column="94" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="94" />
+        <state relative-caret-position="415">
+          <caret line="160" column="26" selection-start-line="160" selection-start-column="26" selection-end-line="160" selection-end-column="26" />
           <folding />
         </state>
       </provider>

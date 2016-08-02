@@ -152,4 +152,13 @@ public class BibliotecaServiceTest {
         assertEquals(true,isCheckedSuccessful);
     }
 
+    @Test
+    public void should_return_false_when_calling_checkoutMovie_given_checkout_movie_name_not_exist(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+
+        boolean isCheckedSuccessful = bibliotecaService.checkoutMovie("movie 3");
+
+        assertEquals(false,isCheckedSuccessful);
+    }
+
 }
