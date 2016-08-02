@@ -21,6 +21,10 @@ public class BibliotecaService {
         }
     };
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
     private ArrayList<User> users = new ArrayList<User>(){
         {
             add(new User("000-0001","12345",false));
@@ -29,6 +33,10 @@ public class BibliotecaService {
 
     public User getLoginUser() {
         return loginUser;
+    }
+
+    public void setLoginUser(User loginUser) {
+        this.loginUser = loginUser;
     }
 
     private User loginUser = new User();
@@ -59,6 +67,7 @@ public class BibliotecaService {
         Book book = getBookByName(bookName);
         if (book != null && !book.getIsCheckedOut()) {
             book.setIsCheckedOut(true);
+            book.setCheckoutUser(loginUser);
             return true;
         }
         return false;

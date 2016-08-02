@@ -2,6 +2,7 @@ package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Model.User;
 import com.twu.biblioteca.Router.BibliotecaRouter;
 import org.junit.Test;
 
@@ -191,5 +192,17 @@ public class BibliotecaServiceTest {
 
         assertEquals(false, isLoginSuccessful);
         assertNotNull(bibliotecaService.getLoginUser());
+    }
+
+    @Test
+    public void should_return_true_and_update_checked_book_isChecked_and_checkoutUser_when_calling_checkoutBook_given_valid_book_and_user_has_login(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
+
+        boolean isCheckoutBookSuccessful = bibliotecaService.checkoutBook("book 1");
+        User checkoutUser = bibliotecaService.getBookByName("book 1").getCheckoutUser();
+
+        assertEquals(true, isCheckoutBookSuccessful);
+        assertEquals(bibliotecaService.getUsers().get(0),checkoutUser);
     }
 }
