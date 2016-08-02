@@ -268,5 +268,12 @@ public class BibliotecaShellTest {
         assertEquals("Please login - split library number and password with " + "\",\"\n",routerMessage.getText());
     }
 
+    @Test
+    public void should_display_login_message_when_current_state_is_MainMenu_and_select_returnBook_and_user_not_login(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("3");
+
+        assertEquals("Please login - split library number and password with " + "\",\"\n",routerMessage.getText());
+    }
 
 }
