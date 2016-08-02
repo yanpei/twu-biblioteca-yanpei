@@ -173,12 +173,12 @@ public class BibliotecaServiceTest {
     }
 
     @Test
-    public void should_return_false_and_when_calling_login_given_username_exists_password_true() {
+    public void should_return_false_and_when_calling_login_given_username_exists_and_password_not_true() {
         BibliotecaService bibliotecaService = new BibliotecaService();
 
-        boolean isLoginSuccessful = bibliotecaService.login("000-0001,12345");
+        boolean isLoginSuccessful = bibliotecaService.login("000-0001,23333");
 
-        assertEquals(true, isLoginSuccessful);
+        assertEquals(false, isLoginSuccessful);
         assertNotNull(bibliotecaService.getLoginUser());
     }
 
