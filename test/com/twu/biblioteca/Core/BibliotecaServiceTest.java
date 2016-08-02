@@ -2,6 +2,7 @@ package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
+import com.twu.biblioteca.Router.BibliotecaRouter;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -140,6 +141,15 @@ public class BibliotecaServiceTest {
         assertEquals(2016, allMovieResult.get( 0).getYear());
         assertEquals("director 1", allMovieResult.get(0).getDirector());
         assertEquals(2, allMovieResult.get(0).getMovieRanting());
+    }
+
+    @Test
+    public void should_return_true_when_calling_checkoutMovie_given_checkout_movie_name_exists(){
+        BibliotecaService bibliotecaService = new BibliotecaService();
+
+        boolean isCheckedSuccessful = bibliotecaService.checkoutMovie("movie 1");
+
+        assertEquals(true,isCheckedSuccessful);
     }
 
 }

@@ -17,6 +17,7 @@ public class BibliotecaService {
     private List<Movie> allMovies = new ArrayList<Movie>(){
         {
             add(new Movie("movie 1",2016,"director 1",2));
+            add(new Movie("movie 2",2016,"director 2",0));
         }
     };
 
@@ -71,4 +72,15 @@ public class BibliotecaService {
     public List<Movie> listMovies() {
         return allMovies;
     }
+
+    public boolean checkoutMovie(String movieName) {
+        for (Movie movie:
+             allMovies) {
+            if(movie.getName().equals(movieName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -52,7 +52,7 @@ class MainMenuActionHandler implements IActionHandler {
                 result += "Name: "+ movie.getName()
                         +"\t\tYear: "+ movie.getYear()
                         +"\t\tDirector: "+ movie.getDirector()
-                        +"\t\tMovieRanting: "+ movie.getMovieRanting()+"\n";
+                        +"\t\tMovieRanting: "+ (movie.getMovieRanting() > 0 ? movie.getMovieRanting() : "unrated")+"\n";
             }
             return new RouterMessage(
                     false,

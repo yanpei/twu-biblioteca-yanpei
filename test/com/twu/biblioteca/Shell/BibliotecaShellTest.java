@@ -201,13 +201,14 @@ public class BibliotecaShellTest {
 
         String expectedResult = "----------Movie List--------\n"
                 + "Name: movie 1\t\tYear: 2016\t\tDirector: director 1\t\tMovieRanting: 2\n"
+                + "Name: movie 2\t\tYear: 2016\t\tDirector: director 2\t\tMovieRanting: unrated\n"
                 + "---------------------------\n";
         assertEquals(expectedResult, routerMessage.getText());
         assertEquals(false, routerMessage.getExit());
     }
 
     @Test
-    public void  should_display_MainMenu_when_current_state_is_MainMenu_and_user_select_ListMovies_and_continue_execution(){
+    public void should_display_MainMenu_when_current_state_is_MainMenu_and_user_select_ListMovies_and_continue_execution(){
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
 
         bibliotecaRouter.getRouterMessage("4");
