@@ -238,4 +238,5 @@ public class BibliotecaServiceTest {
         assertEquals(bibliotecaService.getUsers().get(0), checkoutUser);
         assertEquals(true, isCheckedout);
     }
+
 }
