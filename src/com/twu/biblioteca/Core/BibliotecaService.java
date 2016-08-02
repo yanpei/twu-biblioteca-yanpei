@@ -1,7 +1,7 @@
 package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.Movies;
+import com.twu.biblioteca.Model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ public class BibliotecaService {
             add(new Book("book 2","author 2",2016,false));
         }
     };
-    private List<Movies> allMovies = new ArrayList<Movies>(){
+    private List<Movie> allMovies = new ArrayList<Movie>(){
         {
-            add(new Movies("movie 1",2016,"director 1",2));
+            add(new Movie("movie 1",2016,"director 1",2));
         }
     };
 
@@ -68,7 +68,7 @@ public class BibliotecaService {
         return false;
     }
 
-    public List<Movies> listMovies() {
+    public List<Movie> listMovies() {
         return allMovies;
     }
 }

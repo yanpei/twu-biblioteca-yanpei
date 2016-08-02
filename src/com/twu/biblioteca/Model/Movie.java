@@ -1,13 +1,13 @@
 package com.twu.biblioteca.Model;
 
-public class Movies {
+public class Movie {
 
     private String name;
     private int year;
     private String  director;
     private int movieRanting;
 
-    public Movies(String name, int year, String director, int movieRanting) {
+    public Movie(String name, int year, String director, int movieRanting) {
         this.name = name;
         this.year = year;
         this.director = director;

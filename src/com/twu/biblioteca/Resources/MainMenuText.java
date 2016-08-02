@@ -7,6 +7,8 @@ public class MainMenuText {
                                         +"      1. List books\n"
                                         +"      2. Checkout books\n"
                                         +"      3. Return books\n"
+                                        +"      4. List Movies\n"
+
                                         +"\n"
                                         +"      q. Quit\n"
                                         +"-------------------------------------";

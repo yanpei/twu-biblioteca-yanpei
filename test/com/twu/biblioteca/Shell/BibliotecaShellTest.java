@@ -193,4 +193,28 @@ public class BibliotecaShellTest {
         assertEquals(false, routerMessage.getExit());
     }
 
+
+    @Test
+    public void should_display_movie_list_with_name_year_director_and_movie_rating_when_current_state_is_MainMenu_and_userInput_is_ListMovies(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("4");
+
+        String expectedResult = "----------Movie List--------\n"
+                + "Name: movie 1\t\tYear: 2016\t\tDirector: director 1\t\tMovieRanting: 2\n"
+                + "---------------------------\n";
+        assertEquals(expectedResult, routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
+    }
+
+    @Test
+    public void  should_display_MainMenu_when_current_state_is_MainMenu_and_user_select_ListMovies_and_continue_execution(){
+        BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, new BibliotecaService());
+
+        bibliotecaRouter.getRouterMessage("4");
+        RouterMessage routerMessage = bibliotecaRouter.getRouterMessage(null);
+
+        assertEquals(MainMenuText.getMainMenuText(), routerMessage.getText());
+        assertEquals(false, routerMessage.getExit());
+    }
+
 }

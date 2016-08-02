@@ -1,7 +1,7 @@
 package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
-import com.twu.biblioteca.Model.Movies;
+import com.twu.biblioteca.Model.Movie;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -133,12 +133,13 @@ public class BibliotecaServiceTest {
     @Test
     public void  should_get_movie_list_contain_available_movies_when_calling_listMovies(){
         BibliotecaService bibliotecaService = new BibliotecaService();
-        List<Movies> allMoviesResult = bibliotecaService.listMovies();
+        List<Movie> allMovieResult = bibliotecaService.listMovies();
 
-        assertEquals(1,allMoviesResult.size());
-        assertEquals("movie 1", allMoviesResult.get(0).getName());
-        assertEquals(2016, allMoviesResult.get( 0).getYear());
-        assertEquals("director 1", allMoviesResult.get(0).getDirector());
-        assertEquals(2,allMoviesResult.get(0).getMovieRanting());
+        assertEquals(1, allMovieResult.size());
+        assertEquals("movie 1", allMovieResult.get(0).getName());
+        assertEquals(2016, allMovieResult.get( 0).getYear());
+        assertEquals("director 1", allMovieResult.get(0).getDirector());
+        assertEquals(2, allMovieResult.get(0).getMovieRanting());
     }
+
 }

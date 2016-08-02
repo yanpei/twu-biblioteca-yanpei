@@ -5,5 +5,5 @@ public enum RouterState
     Initialization,
     MainMenu,
     Checkout,
-    ReturnBook
+    ReturnBook,
 }
