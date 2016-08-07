@@ -45,7 +45,7 @@ class MainMenuActionHandler implements IActionHandler {
                 return new RouterMessage(false,true,"Please login - split library number and password with " + "\",\"\n");
             }
             routerContext.setNextState(RouterState.Checkout);
-            return new RouterMessage(false, true, null);
+            return new RouterMessage(false, true, "Please input book name to checkout:\n");
         }
 
         if(userInput.equals("3")){
@@ -54,7 +54,7 @@ class MainMenuActionHandler implements IActionHandler {
                 return new RouterMessage(false,true,"Please login - split library number and password with " + "\",\"\n");
             }
             routerContext.setNextState(RouterState.ReturnBook);
-            return new RouterMessage(false, true, null);
+            return new RouterMessage(false, true, "Pleae input book name to return:\n");
         }
 
         if(userInput.equals("4")){
@@ -77,7 +77,7 @@ class MainMenuActionHandler implements IActionHandler {
                 return new RouterMessage(false,true,"Please login - split library number and password with " + "\",\"\n");
             }
             routerContext.setNextState(RouterState.CheckoutMovie);
-            return new RouterMessage(false, true, null);
+            return new RouterMessage(false, true, "Please input movie name to checkout:\n");
         }
 
         if(userInput.equals("6")){
@@ -87,12 +87,15 @@ class MainMenuActionHandler implements IActionHandler {
 
         if(userInput.equals("7")){
             User user = bibliotecaService.getLoginUser();
-            String result = "Name: "+ user.getName()
-                    + "\t\tEmail Address: " + user.getEmaiAddress()
-                    + "\t\tPhone Number: " + user.getPhoneNumber() + "\n";
-            return new RouterMessage(
-                    false,
-                    false, "----------My Information--------\n"+result+"---------------------------\n");
+            if(user != null) {
+                String result = "Name: " + user.getName()
+                        + "\t\tEmail Address: " + user.getEmaiAddress()
+                        + "\t\tPhone Number: " + user.getPhoneNumber() + "\n";
+                return new RouterMessage(
+                        false,
+                        false, "----------My Information--------\n" + result + "---------------------------\n");
+            }
+            return new RouterMessage(false, true, "Select a valid option!\n");
         }
 
         if(userInput.equals("q")){

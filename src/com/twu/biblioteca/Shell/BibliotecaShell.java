@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Shell;
 
 import com.twu.biblioteca.Core.BibliotecaService;
+import com.twu.biblioteca.Resources.Repository;
 import com.twu.biblioteca.Router.BibliotecaRouter;
 import com.twu.biblioteca.Router.RouterMessage;
 import com.twu.biblioteca.Router.RouterState;
@@ -20,7 +21,7 @@ public class BibliotecaShell {
 
     public void Execute()
     {
-        BibliotecaRouter router = new BibliotecaRouter(RouterState.Initialization, new BibliotecaService());
+        BibliotecaRouter router = new BibliotecaRouter(RouterState.Initialization, new BibliotecaService(new Repository()));
         String userInput = null;
         Scanner inputScanner= new Scanner(m_inputStream);
 

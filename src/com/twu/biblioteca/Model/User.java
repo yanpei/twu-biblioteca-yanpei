@@ -1,8 +1,5 @@
 package com.twu.biblioteca.Model;
 
-/**
- * Created by pyan on 8/2/16.
- */
 public class User {
     private String libraryNumber;
     private String password;

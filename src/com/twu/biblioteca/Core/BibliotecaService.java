@@ -3,34 +3,23 @@ package com.twu.biblioteca.Core;
 import com.twu.biblioteca.Model.Book;
 import com.twu.biblioteca.Model.Movie;
 import com.twu.biblioteca.Model.User;
+import com.twu.biblioteca.Resources.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BibliotecaService {
     private String welcomeMessage = "Hello, welcome to the Biblioteca!";
-    private ArrayList<Book> allBooks = new ArrayList<Book>(){
-        {
-            add(new Book("book 1","author 1",2016,false));
-            add(new Book("book 2","author 2",2016,false));
-        }
-    };
-    private List<Movie> allMovies = new ArrayList<Movie>(){
-        {
-            add(new Movie("movie 1",2016,"director 1",2));
-            add(new Movie("movie 2",2016,"director 2",0));
-        }
-    };
+    private User loginUser;
+    private ArrayList<Book> allBooks;
+    private List<Movie> allMovies;
+    private ArrayList<User> users;
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public BibliotecaService(Repository repository){
+        this.allBooks = repository.getAllBooks();
+        this.allMovies = repository.getAllMovies();
+        this.users = repository.getUsers();
     }
-
-    private ArrayList<User> users = new ArrayList<User>(){
-        {
-            add(new User("000-0001","12345","user 1","user1@163.com","123234"));
-            add(new User("000-0005","12345","user 2","user2@163.com","123409"));
-        }
-    };
 
     public User getLoginUser() {
         return loginUser;
@@ -40,17 +29,18 @@ public class BibliotecaService {
         this.loginUser = loginUser;
     }
 
-    private User loginUser;
-
-    public BibliotecaService() {
-    }
-
     public String getWelcomeMessage() {
+
         return welcomeMessage;
     }
 
     public ArrayList<Book> getAllBooks() {
+
         return allBooks;
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
     }
 
     public ArrayList<Book> listBooks() {
@@ -72,14 +62,6 @@ public class BibliotecaService {
             return true;
         }
         return false;
-    }
-
-    public Book getBookByName(String bookName){
-        for (Book book : getAllBooks()) {
-            if (book.getBookName().equals(bookName))
-                return book;
-        }
-        return null;
     }
 
     public boolean returnBook(String bookName) {
@@ -122,5 +104,13 @@ public class BibliotecaService {
             }
         }
         return false;
+    }
+
+    public Book getBookByName(String bookName){
+        for (Book book : getAllBooks()) {
+            if (book.getBookName().equals(bookName))
+                return book;
+        }
+        return null;
     }
 }
