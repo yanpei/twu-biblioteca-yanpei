@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.CheckOutItem;
 import com.twu.biblioteca.Model.Movie;
 import com.twu.biblioteca.Model.User;
 import com.twu.biblioteca.Resources.Repository;
@@ -195,47 +196,53 @@ public class BibliotecaServiceTest {
     }
 
     @Test
-    public void should_return_true_and_update_checked_book_isChecked_and_checkoutUser_when_calling_checkoutBook_given_valid_book_and_user_has_login(){
-        BibliotecaService bibliotecaService = new BibliotecaService(new Repository());
+    public void should_return_true_and_update_checked_book_isChecked_and_add_chekoutItem_in_checkoutItemList_when_calling_checkoutBook_given_valid_book_and_user_has_login(){
+        Repository repository = new Repository();
+        BibliotecaService bibliotecaService = new BibliotecaService(repository);
         bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
 
         boolean isCheckoutBookSuccessful = bibliotecaService.checkoutBook("book 1");
-        User checkoutUser = bibliotecaService.getBookByName("book 1").getCheckoutUser();
+        CheckOutItem newCheckoutItem = repository.getCheckOutItems().get(0);
 
         assertEquals(true, isCheckoutBookSuccessful);
-        assertEquals(bibliotecaService.getUsers().get(0),checkoutUser);
+        assertEquals("book 1",newCheckoutItem.getCheckOutBook().getBookName());
+        assertEquals("000-0001",newCheckoutItem.getUser().getLibraryNumber());
     }
 
     @Test
-    public void should_return_true_and_update_checked_book_isChecked_and_checkoutUser_when_calling_returnBook_given_valid_book_and_loginUser_equal_with_checkOutUser_of_book(){
-        BibliotecaService bibliotecaService = new BibliotecaService(new Repository());
-        bibliotecaService.getBookByName("book 1").setIsCheckedOut(true);
-        bibliotecaService.getBookByName("book 1").setCheckoutUser(bibliotecaService.getUsers().get(0));
+    public void should_return_true_and_update_checked_book_isChecked_and_delete_the_checkoutItem_in_checkoutItems_when_calling_returnBook_given_valid_book_and_loginUser_equal_with_checkOutUser_of_book(){
+        Repository repository = new Repository();
+        BibliotecaService bibliotecaService = new BibliotecaService(repository);
+        Book book = bibliotecaService.getBookByName("book 1");
+        book.setIsCheckedOut(true);
+        User user = bibliotecaService.getUsers().get(0);
+        repository.getCheckOutItems().add(new CheckOutItem(book,user));
         bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
 
-        boolean isCheckoutBookSuccessful = bibliotecaService.returnBook("book 1");
+        boolean isReturnBookSuccessful = bibliotecaService.returnBook("book 1");
 
-        User checkoutUser = bibliotecaService.getBookByName("book 1").getCheckoutUser();
         boolean isCheckedout = bibliotecaService.getBookByName("book 1").getIsCheckedOut();
-        assertEquals(true, isCheckoutBookSuccessful);
-        assertEquals(null, checkoutUser);
+        assertEquals(true, isReturnBookSuccessful);
         assertEquals(false, isCheckedout);
+        assertEquals(0,repository.getCheckOutItems().size());
     }
 
     @Test
     public void should_return_false_when_calling_checkoutBook_given_valid_book_but_loginUser_not_equal_with_checkOutUser_of_book(){
-        BibliotecaService bibliotecaService = new BibliotecaService(new Repository());
-        bibliotecaService.getBookByName("book 1").setIsCheckedOut(true);
-        bibliotecaService.getBookByName("book 1").setCheckoutUser(bibliotecaService.getUsers().get(0));
+        Repository repository = new Repository();
+        BibliotecaService bibliotecaService = new BibliotecaService(repository);
+        Book book = bibliotecaService.getBookByName("book 1");
+        book.setIsCheckedOut(true);
+        User user = bibliotecaService.getUsers().get(0);
+        repository.getCheckOutItems().add(new CheckOutItem(book,user));
         bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(1));
 
-        boolean isCheckoutBookSuccessful = bibliotecaService.returnBook("book 1");
+        boolean isReturnBookSuccessful = bibliotecaService.returnBook("book 1");
 
-        User checkoutUser = bibliotecaService.getBookByName("book 1").getCheckoutUser();
         boolean isCheckedout = bibliotecaService.getBookByName("book 1").getIsCheckedOut();
-        assertEquals(false, isCheckoutBookSuccessful);
-        assertEquals(bibliotecaService.getUsers().get(0), checkoutUser);
+        assertEquals(false, isReturnBookSuccessful);
         assertEquals(true, isCheckedout);
+        assertEquals("000-0001", bibliotecaService.getCheckoutItem(book).getUser().getLibraryNumber());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Model;
 
 public class Book {
+    private int id;
     private String bookName;
     private String author;
     private int yearPublished;
@@ -8,11 +9,16 @@ public class Book {
 
     private User checkoutUser;
 
-    public Book(String bookName,String author,int yearPublished,boolean isCheckedOut){
+    public Book(int id, String bookName, String author, int yearPublished, boolean isCheckedOut){
+        this.id = id;
         this.bookName = bookName;
         this.author = author;
         this.yearPublished = yearPublished;
         this.isCheckedOut = isCheckedOut;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public boolean getIsCheckedOut() {

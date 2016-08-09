@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Resources;
 
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.CheckOutItem;
 import com.twu.biblioteca.Model.Movie;
 import com.twu.biblioteca.Model.User;
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ public class Repository {
 
     private ArrayList<Book> allBooks = new ArrayList<Book>(){
         {
-            add(new Book("book 1","author 1",2016,false));
-            add(new Book("book 2","author 2",2016,false));
+            add(new Book(1,"book 1","author 1",2016,false));
+            add(new Book(2,"book 2","author 2",2016,false));
         }
     };
 
@@ -29,6 +30,8 @@ public class Repository {
         }
     };
 
+    private ArrayList<CheckOutItem> checkOutItems = new ArrayList<CheckOutItem>();
+
     public ArrayList<Book> getAllBooks() {
         return allBooks;
     }
@@ -39,5 +42,9 @@ public class Repository {
 
     public ArrayList<User> getUsers() {
         return users;
+    }
+
+    public ArrayList<CheckOutItem> getCheckOutItems() {
+        return checkOutItems;
     }
 }

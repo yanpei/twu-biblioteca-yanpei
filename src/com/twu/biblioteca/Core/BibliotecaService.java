@@ -1,6 +1,7 @@
 package com.twu.biblioteca.Core;
 
 import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.CheckOutItem;
 import com.twu.biblioteca.Model.Movie;
 import com.twu.biblioteca.Model.User;
 import com.twu.biblioteca.Resources.Repository;
@@ -14,11 +15,13 @@ public class BibliotecaService {
     private ArrayList<Book> allBooks;
     private List<Movie> allMovies;
     private ArrayList<User> users;
+    private ArrayList<CheckOutItem> checkOutItems;
 
     public BibliotecaService(Repository repository){
         this.allBooks = repository.getAllBooks();
         this.allMovies = repository.getAllMovies();
         this.users = repository.getUsers();
+        this.checkOutItems = repository.getCheckOutItems();
     }
 
     public User getLoginUser() {
@@ -58,7 +61,9 @@ public class BibliotecaService {
         Book book = getBookByName(bookName);
         if (book != null && !book.getIsCheckedOut()) {
             book.setIsCheckedOut(true);
+            checkOutItems.add(new CheckOutItem(book,loginUser));
             book.setCheckoutUser(loginUser);
+
             return true;
         }
         return false;
@@ -66,12 +71,33 @@ public class BibliotecaService {
 
     public boolean returnBook(String bookName) {
         Book book = getBookByName(bookName);
-        if(book != null && book.getIsCheckedOut() && book.getCheckoutUser() == loginUser){
+        if(book != null && book.getIsCheckedOut() && getCheckoutItem(book).getUser() == loginUser){
             book.setIsCheckedOut(false);
-            book.setCheckoutUser(null);
+            deleteCheckoutItem(book);
             return true;
         }
         return false;
+    }
+
+    public CheckOutItem getCheckoutItem(Book book){
+        if(book != null) {
+            for (int i = 0; i < checkOutItems.size(); i++) {
+                if (checkOutItems.get(i).getCheckOutBook().getId() == book.getId()) {
+                    return checkOutItems.get(i);
+                }
+            }
+        }
+        return null;
+    }
+
+    public void deleteCheckoutItem(Book book) {
+        for (int i = 0; i < checkOutItems.size(); i++) {
+            if (checkOutItems.get(i).getCheckOutBook().getId() == book.getId()) {
+                checkOutItems.remove(i);
+                break;
+            }
+        }
+        return;
     }
 
     public List<Movie> listMovies() {
