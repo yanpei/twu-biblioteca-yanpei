@@ -1,6 +1,8 @@
 package com.twu.biblioteca.Shell;
 
 import com.twu.biblioteca.Core.BibliotecaService;
+import com.twu.biblioteca.Model.Book;
+import com.twu.biblioteca.Model.CheckOutItem;
 import com.twu.biblioteca.Model.User;
 import com.twu.biblioteca.Resources.MainMenuText;
 import com.twu.biblioteca.Resources.Repository;
@@ -92,7 +94,7 @@ public class BibliotecaShellTest {
 
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("2");
 
-        assertEquals(null, routerMessage.getText());
+        assertEquals("Please input book name to checkout:\n", routerMessage.getText());
         assertEquals(true, routerMessage.isWaitingInput());
         assertEquals(false, routerMessage.getExit());
     }
@@ -149,7 +151,7 @@ public class BibliotecaShellTest {
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.MainMenu, bibliotecaService);
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("3");
 
-        assertEquals(null, routerMessage.getText());
+        assertEquals("Pleae input book name to return:\n", routerMessage.getText());
         assertEquals(true, routerMessage.isWaitingInput());
         assertEquals(false, routerMessage.getExit());
     }
@@ -166,8 +168,13 @@ public class BibliotecaShellTest {
 
     @Test
     public void should_display_returned_books_when_current_state_is_MainMenu_and_user_input_is_ListBooks(){
-        BibliotecaService bibliotecaService = new BibliotecaService(new Repository());
-        bibliotecaService.getAllBooks().get(0).setIsCheckedOut(true);
+        Repository repository = new Repository();
+        BibliotecaService bibliotecaService = new BibliotecaService(repository);
+        Book book = bibliotecaService.getBookByName("book 1");
+        book.setIsCheckedOut(true);
+        User user = bibliotecaService.getUsers().get(0);
+        repository.getCheckOutItems().add(new CheckOutItem(book,user));
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.ReturnBook, bibliotecaService);
         bibliotecaRouter.getRouterMessage("book 1");
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("1");
@@ -182,9 +189,14 @@ public class BibliotecaShellTest {
 
     @Test
     public void should_display_successful_message_when_current_state_is_return_book_and_user_input_book_name_exists_and_been_checked_out(){
-        BibliotecaService bibliotecaService = new BibliotecaService(new Repository());
-        bibliotecaService.getAllBooks().get(0).setIsCheckedOut(true);
+        Repository repository = new Repository();
+        BibliotecaService bibliotecaService = new BibliotecaService(repository);
+        Book book = bibliotecaService.getBookByName("book 1");
+        book.setIsCheckedOut(true);
+        User user = bibliotecaService.getUsers().get(0);
+        repository.getCheckOutItems().add(new CheckOutItem(book,user));
         BibliotecaRouter bibliotecaRouter = new BibliotecaRouter(RouterState.ReturnBook, bibliotecaService);
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
 
         RouterMessage routerMessage = bibliotecaRouter.getRouterMessage("book 1");
 

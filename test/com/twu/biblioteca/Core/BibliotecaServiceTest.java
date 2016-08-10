@@ -29,7 +29,6 @@ public class BibliotecaServiceTest {
         assertEquals(2,allBooksResult.size());
         assertEquals("book 1", allBooksResult.get(0).getBookName());
         assertEquals("book 2", allBooksResult.get(1).getBookName());
-
     }
 
     @Test
@@ -92,8 +91,13 @@ public class BibliotecaServiceTest {
 
     @Test
     public void should_return_true_when_call_returnBook_given_book_name_exist_and_been_checkedout(){
-        BibliotecaService bibliotecaService = new BibliotecaService(new Repository());
-        bibliotecaService.getAllBooks().get(0).setIsCheckedOut(true);
+        Repository repository = new Repository();
+        BibliotecaService bibliotecaService = new BibliotecaService(repository);
+        Book book = bibliotecaService.getBookByName("book 1");
+        book.setIsCheckedOut(true);
+        User user = bibliotecaService.getUsers().get(0);
+        repository.getCheckOutItems().add(new CheckOutItem(book,user));
+        bibliotecaService.setLoginUser(bibliotecaService.getUsers().get(0));
 
         assertEquals(true,bibliotecaService.returnBook("book 1"));
     }
