@@ -62,8 +62,6 @@ public class BibliotecaService {
         if (book != null && !book.getIsCheckedOut()) {
             book.setIsCheckedOut(true);
             checkOutItems.add(new CheckOutItem(book,loginUser));
-            book.setCheckoutUser(loginUser);
-
             return true;
         }
         return false;

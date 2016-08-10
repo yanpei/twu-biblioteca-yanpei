@@ -41,11 +41,4 @@ public class Book {
         return yearPublished;
     }
 
-    public User getCheckoutUser() {
-        return checkoutUser;
-    }
-
-    public void setCheckoutUser(User checkoutUser) {
-        this.checkoutUser = checkoutUser;
-    }
 }

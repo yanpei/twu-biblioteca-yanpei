@@ -1,7 +1,6 @@
 package com.twu.biblioteca.Model;
 
 public class Movie {
-
     private String name;
     private int year;
     private String  director;
