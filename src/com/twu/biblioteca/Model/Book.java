@@ -7,8 +7,6 @@ public class Book {
     private int yearPublished;
     private boolean isCheckedOut;
 
-    private User checkoutUser;
-
     public Book(int id, String bookName, String author, int yearPublished, boolean isCheckedOut){
         this.id = id;
         this.bookName = bookName;
